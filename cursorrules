@@ -1,0 +1,47 @@
+# .cursorrules
+# CRM Lead Management — NestJS Backend
+# Auto-loaded by Cursor/Windsurf every session. Always active.
+
+## READ FIRST EVERY SESSION
+1. docs/07_OPERATIONS_LOG.md  — Current project state & session history
+2. docs/01_PROJECT_META.md    — Tech stack, setup, and scope audit
+3. docs/02_ARCHITECTURE_STANDARDS.md — Non-negotiable laws
+
+## AI AGENT LOGGING (MANDATORY)
+Every session must log its intent and outcome:
+- **START**: Use a `<thought>` block to analyze the "last 3 entries" in `07_OPERATIONS_LOG.md` for context alignment. Log "Intent" to `ai_operation_logs` (status: pending).
+- **END**: Update log with "Outcome" (success/fail) via `fn_log_ai_operation` and update `07_OPERATIONS_LOG.md`.
+
+## ARCHITECTURE — NEVER BREAK
+- ALL business logic in PostgreSQL dispatcher functions only (docs/03_DATABASE_CORE.md)
+- NestJS service methods: return this.db.callDispatcher(fn, payload) ONLY
+- NestJS controllers: validate DTO + call service + return result ONLY
+- Cookie: crm_session HttpOnly — NO JWT — NO Bearer tokens
+- Soft deletes: deleted_at = NOW() — NEVER DELETE FROM — Check for dependencies (Role/User) first.
+- Concurrency: Use `SELECT ... FOR UPDATE` in SQL for critical mutations to prevent race conditions.
+- Storage: Use `StorageProvider` interface in `DocumentService` — No raw `fs` in logic.
+- Response Envelope: { rid, statusCode, data, message, errors, meta }
+
+## SQL INJECTION PREVENTION (docs/03_DATABASE_CORE.md)
+- NEVER EXECUTE with string concat -> ALWAYS format() with %I or %L
+- NEVER ILIKE without fn_escape_like() + ESCAPE '\'
+- ALWAYS cast JSONB to types: (p_data->>'id')::UUID, (p_data->>'status')::lead_status
+- ALWAYS SET search_path = public on SECURITY DEFINER functions
+
+## NESTJS RULES (docs/04_API_AUTH_AND_UI_CONFIG.md)
+- class-validator DTOs — whitelist:true, transform:true
+- @UseGuards(SessionGuard) on all. @Roles('admin') on admin routes.
+- Use docs/04_API_AUTH_AND_UI_CONFIG.md for Error rid registry (e.g. e-lead-not-found)
+
+## BUILD ORDER
+Auth -> Users -> Contacts -> Leads -> Projects -> Tasks -> Documents -> 
+Communications -> Quotations -> Expenses -> Workflows -> Notifications -> 
+Dashboard -> Reports -> Search -> Audit -> Integrations -> Project Shares
+
+## SESSION SYNC
+Use prompts from docs/08_AI_PROMPTS.md to start/end sessions.
+Agent auto-updates 07_OPERATIONS_LOG.md.
+
+## LOCAL SETUP
+PostgreSQL 17 on Windows directly. Max JSON body size: 1MB.
+Start: npm run start:dev | Migrate: node tools/migrate.js | Seed: node tools/seed.js
