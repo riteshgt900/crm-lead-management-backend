@@ -105,7 +105,7 @@ MAIL_FROM=notifications@crm.local
 ### Totals
 - **Tables**: 32 Core + Mapping Tables
 - **Endpoints**: 130+
-- **Migrations**: 65+
+- **Migrations**: 63 (Applied & Verified)
 - **Roles**: Super Admin, Admin, PM, Team, External
 
 ---

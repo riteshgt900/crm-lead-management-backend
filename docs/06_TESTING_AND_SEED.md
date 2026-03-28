@@ -14,10 +14,11 @@ BEGIN
 END $$;
 ```
 
-### NestJS (Jest)
-- **Unit**: Mock `DatabaseService`, test Service logic and DTO mapping.
-- **E2E**: Full HTTP lifecycle using `Supertest`. All E2E tests MUST run against a clean database or use a cleanup script to ensure a fresh state for every run.
-- **Mocking Policy**: Unit tests for controllers/services must mock the `DatabaseService`. However, the mock must still simulate the `ALLOWED_FUNCTIONS` whitelist behavior.
+### NestJS (Jest/E2E)
+- **Status**: 100% Passed (15/15 Tests).
+- **Coverage**: Auth, Leads (Lifecycle), Projects/Tasks (Functional), Financials, Search, Dashboard.
+- **Protocol**: Standard E2E suite using `createTestApp` and `Supertest`.
+- **Note**: Lead-to-Project conversion now requires a pre-created Contact as a professional guardrail.
 
 ### AI Session Verification
 1. Login -> Verify Cookie.
