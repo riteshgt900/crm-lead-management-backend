@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, UseGuards } from '@nestjs/common';
 import { QuotationsService } from './quotations.service';
 import { CreateQuotationDto } from './dto/quotation.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
@@ -10,8 +10,8 @@ export class QuotationsController {
   constructor(private quotationsService: QuotationsService) {}
 
   @Get()
-  async findAll(@CurrentUser() user: any) {
-    return this.quotationsService.findAll(user);
+  async findAll(@Query() query: any, @CurrentUser() user: any) {
+    return this.quotationsService.findAll(query, user);
   }
 
   @Post()

@@ -1,5 +1,47 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID,
+  Max,
+  Min,
+} from 'class-validator';
+
+export class TaskListQueryDto {
+  @ApiPropertyOptional({ example: 'uuid-project' })
+  @IsOptional()
+  @IsUUID()
+  projectId?: string;
+
+  @ApiPropertyOptional({ example: 1 })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @ApiPropertyOptional({ example: 20 })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(100)
+  limit?: number = 20;
+
+  @ApiPropertyOptional({ example: 'todo' })
+  @IsOptional()
+  @IsString()
+  status?: string;
+
+  @ApiPropertyOptional({ example: 'painting' })
+  @IsOptional()
+  @IsString()
+  q?: string;
+}
 
 export class CreateTaskDto {
   @ApiProperty({ example: 'Final Painting - Living Room', description: 'The title of the task' })
@@ -25,6 +67,18 @@ export class CreateTaskDto {
 
   @ApiPropertyOptional({ example: 'uuid-user' })
   @IsOptional() @IsUUID() assignedTo?: string;
+
+  @ApiPropertyOptional({ example: 'uuid-user', description: 'Alias for assigned user' })
+  @IsOptional() @IsUUID() assigneeId?: string;
+
+  @ApiPropertyOptional({ example: '2026-04-01T08:00:00.000Z' })
+  @IsOptional() @IsString() dueDate?: string;
+
+  @ApiPropertyOptional({ example: 8 })
+  @IsOptional() @IsNumber() estimatedHours?: number;
+
+  @ApiPropertyOptional({ example: 'uuid-parent-task' })
+  @IsOptional() @IsUUID() parentTaskId?: string;
 }
 
 export class UpdateTaskDto {
@@ -36,4 +90,16 @@ export class UpdateTaskDto {
 
   @ApiPropertyOptional({ example: 'uuid-user' })
   @IsOptional() @IsUUID() assignedTo?: string;
+
+  @ApiPropertyOptional({ example: 'uuid-user' })
+  @IsOptional() @IsUUID() assigneeId?: string;
+
+  @ApiPropertyOptional({ example: '2026-04-01T08:00:00.000Z' })
+  @IsOptional() @IsString() dueDate?: string;
+
+  @ApiPropertyOptional({ example: 8 })
+  @IsOptional() @IsNumber() estimatedHours?: number;
+
+  @ApiPropertyOptional({ example: 'uuid-parent-task' })
+  @IsOptional() @IsUUID() parentTaskId?: string;
 }

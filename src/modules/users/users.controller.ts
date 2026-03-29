@@ -1,32 +1,39 @@
-import { Controller, Get, Post, Patch, Body, Param, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query, ForbiddenException, UseGuards } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { CreateUserDto, UpdateUserDto } from './dto/user.dto';
+import { CreateUserDto, ListUsersQueryDto, UpdateUserDto } from './dto/user.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
-import { RolesGuard } from '../../common/guards/roles.guard';
-import { Roles } from '../../common/decorators/roles.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
+@ApiTags('Users')
 @Controller('users')
 @UseGuards(SessionGuard)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  @Roles('admin')
-  @UseGuards(RolesGuard)
-  async findAll() {
-    return this.usersService.findAll();
+  @ApiOperation({ summary: 'List users', description: 'Returns the current tenant user list with pagination and filters.' })
+  async findAll(@Query() query: ListUsersQueryDto, @CurrentUser() user: any) {
+    this.assertAdmin(user);
+    return this.usersService.findAll(query, user);
   }
 
   @Post('invite')
-  @Roles('admin')
-  @UseGuards(RolesGuard)
   async invite(@Body() dto: CreateUserDto, @CurrentUser() user: any) {
-    return this.usersService.invite(dto, user.id);
+    this.assertAdmin(user);
+    return this.usersService.invite(dto, user);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() dto: UpdateUserDto, @CurrentUser() user: any) {
-    return this.usersService.update(id, dto, user.id);
+    this.assertAdmin(user);
+    return this.usersService.update(id, dto, user);
+  }
+
+  private assertAdmin(user: any) {
+    const roleName = user?.roleName ?? user?.role;
+    if (roleName !== 'admin') {
+      throw new ForbiddenException({ rid: 'e-forbidden', message: 'Insufficient permissions' });
+    }
   }
 }

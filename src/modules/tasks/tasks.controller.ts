@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Patch, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Body, Param, Query, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { TasksService } from './tasks.service';
-import { CreateTaskDto, UpdateTaskDto } from './dto/task.dto';
+import { CreateTaskDto, TaskListQueryDto, UpdateTaskDto } from './dto/task.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ApiResponseDto } from '../../common/dto/api-response.dto';
@@ -15,8 +15,8 @@ export class TasksController {
   @Get()
   @ApiOperation({ summary: 'List all tasks' })
   @ApiResponse({ status: 200, description: 'Return all tasks', type: ApiResponseDto })
-  async findAll(@CurrentUser() user: any) {
-    return this.tasksService.findAll(user);
+  async findAll(@Query() query: TaskListQueryDto, @CurrentUser() user: any) {
+    return this.tasksService.findAll(query, user);
   }
 
   @Post()

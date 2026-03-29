@@ -1,7 +1,53 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/auth/login": {
+    "/api/reports": {
+      "get": {
+        "operationId": "ReportsController_generate",
+        "summary": "Generate report data",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Report data retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/api/reports/export": {
+      "get": {
+        "operationId": "ReportsController_export",
+        "summary": "Export report as CSV",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/api/auth/login": {
       "post": {
         "operationId": "AuthController_login",
         "summary": "Standard Login",
@@ -37,7 +83,7 @@
         ]
       }
     },
-    "/auth/logout": {
+    "/api/auth/logout": {
       "post": {
         "operationId": "AuthController_logout",
         "summary": "Logout",
@@ -53,7 +99,7 @@
         ]
       }
     },
-    "/auth/profile": {
+    "/api/auth/profile": {
       "get": {
         "operationId": "AuthController_getProfile",
         "summary": "Get current profile",
@@ -76,7 +122,7 @@
         ]
       }
     },
-    "/auth/forgot-password": {
+    "/api/auth/forgot-password": {
       "post": {
         "operationId": "AuthController_forgotPassword",
         "summary": "Initiate password reset",
@@ -101,7 +147,7 @@
         ]
       }
     },
-    "/auth/reset-password": {
+    "/api/auth/reset-password": {
       "post": {
         "operationId": "AuthController_resetPassword",
         "summary": "Complete password reset",
@@ -126,7 +172,7 @@
         ]
       }
     },
-    "/auth/session": {
+    "/api/auth/session": {
       "get": {
         "operationId": "AuthController_getSession",
         "summary": "Validate session",
@@ -149,18 +195,23 @@
         ]
       }
     },
-    "/users": {
+    "/api/users": {
       "get": {
         "operationId": "UsersController_findAll",
+        "summary": "List users",
+        "description": "Returns the current tenant user list with pagination and filters.",
         "parameters": [],
         "responses": {
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Users"
+        ]
       }
     },
-    "/users/invite": {
+    "/api/users/invite": {
       "post": {
         "operationId": "UsersController_invite",
         "parameters": [],
@@ -178,10 +229,13 @@
           "201": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Users"
+        ]
       }
     },
-    "/users/{id}": {
+    "/api/users/{id}": {
       "patch": {
         "operationId": "UsersController_update",
         "parameters": [
@@ -208,10 +262,13 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Users"
+        ]
       }
     },
-    "/leads": {
+    "/api/leads": {
       "get": {
         "operationId": "LeadsController_findAll",
         "summary": "List all leads",
@@ -267,7 +324,7 @@
         ]
       }
     },
-    "/leads/{id}": {
+    "/api/leads/{id}": {
       "get": {
         "operationId": "LeadsController_findOne",
         "summary": "Get lead by ID",
@@ -299,9 +356,48 @@
         "tags": [
           "Leads"
         ]
+      },
+      "patch": {
+        "operationId": "LeadsController_updateLead",
+        "summary": "Update lead details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeadDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lead updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Leads"
+        ]
       }
     },
-    "/leads/{id}/status": {
+    "/api/leads/{id}/status": {
       "patch": {
         "operationId": "LeadsController_updateStatus",
         "summary": "Update lead status",
@@ -342,7 +438,7 @@
         ]
       }
     },
-    "/leads/bulk": {
+    "/api/leads/bulk": {
       "post": {
         "operationId": "LeadsController_bulkUpdate",
         "summary": "Bulk update leads",
@@ -374,7 +470,7 @@
         ]
       }
     },
-    "/leads/{id}/convert": {
+    "/api/leads/{id}/convert": {
       "post": {
         "operationId": "LeadsController_convert",
         "summary": "Convert lead to project",
@@ -388,6 +484,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertLeadDto"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Lead converted successfully",
@@ -408,7 +514,7 @@
         ]
       }
     },
-    "/contacts": {
+    "/api/contacts": {
       "get": {
         "operationId": "ContactsController_findAll",
         "parameters": [],
@@ -438,7 +544,25 @@
         }
       }
     },
-    "/contacts/{id}": {
+    "/api/contacts/{id}": {
+      "get": {
+        "operationId": "ContactsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
       "patch": {
         "operationId": "ContactsController_update",
         "parameters": [
@@ -468,11 +592,80 @@
         }
       }
     },
-    "/projects": {
+    "/api/projects/templates": {
+      "get": {
+        "operationId": "ProjectsController_listTemplates",
+        "summary": "List project templates",
+        "description": "Returns blueprints for project structures (Phases/Tasks).",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Templates retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/api/projects": {
       "get": {
         "operationId": "ProjectsController_findAll",
         "summary": "List all projects",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "q",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "villa",
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "planning",
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectManagerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "uuid-user",
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Return all projects",
@@ -520,7 +713,7 @@
         ]
       }
     },
-    "/projects/{id}": {
+    "/api/projects/{id}": {
       "get": {
         "operationId": "ProjectsController_findOne",
         "summary": "Get project details",
@@ -552,9 +745,48 @@
         "tags": [
           "Projects"
         ]
+      },
+      "patch": {
+        "operationId": "ProjectsController_updateProject",
+        "summary": "Update project details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
       }
     },
-    "/projects/{id}/tasks": {
+    "/api/projects/{id}/tasks": {
       "get": {
         "operationId": "ProjectsController_findTasks",
         "summary": "Get project tasks",
@@ -585,11 +817,89 @@
         ]
       }
     },
-    "/tasks": {
+    "/api/projects/{id}/activity": {
+      "get": {
+        "operationId": "ProjectsController_findActivity",
+        "summary": "Get project activity feed",
+        "description": "Returns a chronological log of all changes and actions taken on this project.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity feed retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/api/tasks": {
       "get": {
         "operationId": "TasksController_findAll",
         "summary": "List all tasks",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "uuid-project",
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "todo",
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "painting",
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Return all tasks",
@@ -637,7 +947,7 @@
         ]
       }
     },
-    "/tasks/{id}": {
+    "/api/tasks/{id}": {
       "patch": {
         "operationId": "TasksController_update",
         "summary": "Update task details",
@@ -678,7 +988,7 @@
         ]
       }
     },
-    "/documents": {
+    "/api/documents": {
       "get": {
         "operationId": "DocumentsController_findAll",
         "parameters": [],
@@ -689,7 +999,7 @@
         }
       }
     },
-    "/documents/upload": {
+    "/api/documents/upload": {
       "post": {
         "operationId": "DocumentsController_upload",
         "parameters": [],
@@ -710,7 +1020,7 @@
         }
       }
     },
-    "/documents/{id}/approve": {
+    "/api/documents/{id}/approve": {
       "post": {
         "operationId": "DocumentsController_approve",
         "parameters": [
@@ -723,6 +1033,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveDocumentDto"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": ""
@@ -730,7 +1050,7 @@
         }
       }
     },
-    "/communications": {
+    "/api/communications": {
       "get": {
         "operationId": "CommunicationsController_findAll",
         "parameters": [],
@@ -760,7 +1080,7 @@
         }
       }
     },
-    "/quotations": {
+    "/api/quotations": {
       "get": {
         "operationId": "QuotationsController_findAll",
         "parameters": [],
@@ -790,7 +1110,7 @@
         }
       }
     },
-    "/expenses": {
+    "/api/expenses": {
       "get": {
         "operationId": "ExpensesController_findAll",
         "parameters": [],
@@ -820,20 +1140,25 @@
         }
       }
     },
-    "/workflows": {
+    "/api/workflows": {
       "get": {
         "operationId": "WorkflowsController_findAll",
+        "summary": "List workflow rules",
         "parameters": [],
         "responses": {
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Workflows"
+        ]
       }
     },
-    "/workflows/{id}": {
+    "/api/workflows/{id}": {
       "patch": {
         "operationId": "WorkflowsController_updateRule",
+        "summary": "Update workflow rule",
         "parameters": [
           {
             "name": "id",
@@ -858,10 +1183,13 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Workflows"
+        ]
       }
     },
-    "/notifications": {
+    "/api/notifications": {
       "get": {
         "operationId": "NotificationsController_findAll",
         "parameters": [],
@@ -872,7 +1200,7 @@
         }
       }
     },
-    "/notifications/{id}/read": {
+    "/api/notifications/{id}/read": {
       "patch": {
         "operationId": "NotificationsController_markAsRead",
         "parameters": [
@@ -885,6 +1213,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateNotificationDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": ""
@@ -892,18 +1230,7 @@
         }
       }
     },
-    "/reports": {
-      "get": {
-        "operationId": "ReportsController_generate",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/dashboard/stats": {
+    "/api/dashboard/stats": {
       "get": {
         "operationId": "DashboardController_getStats",
         "parameters": [],
@@ -917,7 +1244,7 @@
         ]
       }
     },
-    "/search": {
+    "/api/search": {
       "get": {
         "operationId": "SearchController_globalSearch",
         "summary": "Global Search",
@@ -951,7 +1278,7 @@
         ]
       }
     },
-    "/audit": {
+    "/api/audit": {
       "get": {
         "operationId": "AuditController_findAll",
         "parameters": [],
@@ -962,18 +1289,22 @@
         }
       }
     },
-    "/integrations/configs": {
+    "/api/integrations/configs": {
       "get": {
         "operationId": "IntegrationsController_getConfigs",
+        "summary": "Get integration configs",
         "parameters": [],
         "responses": {
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Integrations"
+        ]
       }
     },
-    "/share/{token}": {
+    "/api/share/{token}": {
       "get": {
         "operationId": "ShareController_getSharedEntity",
         "parameters": [
@@ -993,31 +1324,40 @@
         }
       }
     },
-    "/rbac/permissions": {
+    "/api/rbac/permissions": {
       "get": {
         "operationId": "RbacController_listPermissions",
+        "summary": "List available permissions",
         "parameters": [],
         "responses": {
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "RBAC"
+        ]
       }
     },
-    "/rbac/roles": {
+    "/api/rbac/roles": {
       "get": {
         "operationId": "RbacController_listRoles",
+        "summary": "List roles",
         "parameters": [],
         "responses": {
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "RBAC"
+        ]
       }
     },
-    "/rbac/roles/{id}/permissions": {
+    "/api/rbac/roles/{id}/permissions": {
       "post": {
         "operationId": "RbacController_updateRolePermissions",
+        "summary": "Update role permissions",
         "parameters": [
           {
             "name": "id",
@@ -1042,7 +1382,247 @@
           "201": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "RBAC"
+        ]
+      }
+    },
+    "/api/meta/bootstrap": {
+      "get": {
+        "operationId": "RuntimeController_bootstrap",
+        "summary": "Load CRM runtime bootstrap metadata",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/meta/entities": {
+      "get": {
+        "operationId": "RuntimeController_listEntities",
+        "summary": "List runtime entities",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/meta/entities/{entityKey}": {
+      "get": {
+        "operationId": "RuntimeController_getEntity",
+        "summary": "Load runtime entity metadata",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/data/{entityKey}/list": {
+      "post": {
+        "operationId": "RuntimeController_listRecords",
+        "summary": "Generic entity list",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/data/{entityKey}/get": {
+      "post": {
+        "operationId": "RuntimeController_getRecord",
+        "summary": "Generic entity get",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/data/{entityKey}/create": {
+      "post": {
+        "operationId": "RuntimeController_createRecord",
+        "summary": "Generic entity create",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/data/{entityKey}/update": {
+      "post": {
+        "operationId": "RuntimeController_updateRecord",
+        "summary": "Generic entity update",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/data/{entityKey}/delete": {
+      "post": {
+        "operationId": "RuntimeController_deleteRecord",
+        "summary": "Generic entity delete",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/data/{entityKey}/bulk": {
+      "post": {
+        "operationId": "RuntimeController_bulkRecord",
+        "summary": "Generic entity bulk operation",
+        "parameters": [
+          {
+            "name": "entityKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/action/{actionKey}": {
+      "post": {
+        "operationId": "RuntimeController_executeAction",
+        "summary": "Execute a generic CRM action",
+        "parameters": [
+          {
+            "name": "actionKey",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
+      }
+    },
+    "/api/contracts/frontend": {
+      "get": {
+        "operationId": "RuntimeController_getFrontendContract",
+        "summary": "Return frontend contract JSON",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Runtime"
+        ]
       }
     }
   },
@@ -1064,25 +1644,6 @@
       }
     },
     "schemas": {
-      "LoginDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "example": "admin@crm.local",
-            "description": "User email address"
-          },
-          "password": {
-            "type": "string",
-            "example": "Admin@123",
-            "description": "User password"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ]
-      },
       "ApiResponseDto": {
         "type": "object",
         "properties": {
@@ -1114,6 +1675,25 @@
           "data",
           "message",
           "meta"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "admin@crm.local",
+            "description": "User email address"
+          },
+          "password": {
+            "type": "string",
+            "example": "Admin@123",
+            "description": "User password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
         ]
       },
       "ForgotPasswordDto": {
@@ -1174,6 +1754,45 @@
           "title"
         ]
       },
+      "UpdateLeadDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Interior design for 3BHK",
+            "description": "The title of the lead"
+          },
+          "description": {
+            "type": "string",
+            "example": "Client looking for premium villa fit-out"
+          },
+          "source": {
+            "type": "string",
+            "example": "website",
+            "description": "Source of the lead"
+          },
+          "status": {
+            "type": "string",
+            "example": "new",
+            "description": "Current status of the lead"
+          },
+          "estimatedValue": {
+            "type": "number",
+            "example": 500000,
+            "description": "Projected value in INR"
+          },
+          "contactId": {
+            "type": "string",
+            "example": "uuid",
+            "description": "Optional linked contact ID"
+          },
+          "assignedTo": {
+            "type": "string",
+            "example": "uuid",
+            "description": "Optional assigned user ID"
+          }
+        }
+      },
       "UpdateLeadStatusDto": {
         "type": "object",
         "properties": {
@@ -1223,13 +1842,169 @@
           "ids"
         ]
       },
+      "ConvertLeadDto": {
+        "type": "object",
+        "properties": {
+          "templateId": {
+            "type": "string",
+            "example": "uuid-template",
+            "description": "Optional project template ID to clone phases/tasks"
+          }
+        }
+      },
       "CreateContactDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "example": "uuid-account"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+1234567890"
+          },
+          "altPhone": {
+            "type": "string",
+            "example": "+1234567891"
+          },
+          "designation": {
+            "type": "string",
+            "example": "Senior Architect"
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Design co."
+          },
+          "category": {
+            "type": "string",
+            "example": "architect",
+            "enum": [
+              "individual",
+              "architect",
+              "pmc",
+              "vendor"
+            ]
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "example": true
+          },
+          "address": {
+            "type": "string",
+            "example": "12 Crescent Road"
+          },
+          "city": {
+            "type": "string",
+            "example": "Gurugram"
+          },
+          "state": {
+            "type": "string",
+            "example": "Haryana"
+          },
+          "country": {
+            "type": "string",
+            "example": "India"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "Asia/Kolkata"
+          },
+          "notes": {
+            "type": "string",
+            "example": "Key decision maker"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName"
+        ]
       },
       "UpdateContactDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "example": "uuid-account"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+1234567890"
+          },
+          "altPhone": {
+            "type": "string",
+            "example": "+1234567891"
+          },
+          "designation": {
+            "type": "string",
+            "example": "Senior Architect"
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Design co."
+          },
+          "category": {
+            "type": "string",
+            "example": "pmc",
+            "enum": [
+              "individual",
+              "architect",
+              "pmc",
+              "vendor"
+            ]
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "example": true
+          },
+          "address": {
+            "type": "string",
+            "example": "12 Crescent Road"
+          },
+          "city": {
+            "type": "string",
+            "example": "Gurugram"
+          },
+          "state": {
+            "type": "string",
+            "example": "Haryana"
+          },
+          "country": {
+            "type": "string",
+            "example": "India"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "Asia/Kolkata"
+          },
+          "notes": {
+            "type": "string",
+            "example": "Key decision maker"
+          }
+        }
       },
       "CreateProjectDto": {
         "type": "object",
@@ -1253,6 +2028,11 @@
             "example": 1500000,
             "description": "Budget/Estimated value"
           },
+          "budget": {
+            "type": "number",
+            "example": 1500000,
+            "description": "Alias for estimated value used by the frontend contract"
+          },
           "contactId": {
             "type": "string",
             "example": "uuid-contact"
@@ -1263,13 +2043,75 @@
           },
           "projectManagerId": {
             "type": "string",
-            "example": "uuid-manager",
-            "description": "Assigned Project Manager ID"
+            "example": "uuid",
+            "description": "Assigned Project Manager"
+          },
+          "managerId": {
+            "type": "string",
+            "example": "uuid",
+            "description": "Alias for assigned project manager"
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2026-04-01T00:00:00.000Z"
+          },
+          "endDate": {
+            "type": "string",
+            "example": "2026-08-01T00:00:00.000Z"
           }
         },
         "required": [
           "title"
         ]
+      },
+      "UpdateProjectDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Revised Villa Fit-out"
+          },
+          "description": {
+            "type": "string",
+            "example": "Revised scope with added joinery package"
+          },
+          "status": {
+            "type": "string",
+            "example": "completed"
+          },
+          "estimatedValue": {
+            "type": "number",
+            "example": 1750000
+          },
+          "budget": {
+            "type": "number",
+            "example": 1750000
+          },
+          "contactId": {
+            "type": "string",
+            "example": "uuid-contact"
+          },
+          "leadId": {
+            "type": "string",
+            "example": "uuid-lead"
+          },
+          "projectManagerId": {
+            "type": "string",
+            "example": "uuid-user"
+          },
+          "managerId": {
+            "type": "string",
+            "example": "uuid-user"
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2026-04-01T00:00:00.000Z"
+          },
+          "endDate": {
+            "type": "string",
+            "example": "2026-08-01T00:00:00.000Z"
+          }
+        }
       },
       "CreateTaskDto": {
         "type": "object",
@@ -1309,6 +2151,23 @@
           "assignedTo": {
             "type": "string",
             "example": "uuid-user"
+          },
+          "assigneeId": {
+            "type": "string",
+            "example": "uuid-user",
+            "description": "Alias for assigned user"
+          },
+          "dueDate": {
+            "type": "string",
+            "example": "2026-04-01T08:00:00.000Z"
+          },
+          "estimatedHours": {
+            "type": "number",
+            "example": 8
+          },
+          "parentTaskId": {
+            "type": "string",
+            "example": "uuid-parent-task"
           }
         },
         "required": [
@@ -1330,28 +2189,358 @@
           "assignedTo": {
             "type": "string",
             "example": "uuid-user"
+          },
+          "assigneeId": {
+            "type": "string",
+            "example": "uuid-user"
+          },
+          "dueDate": {
+            "type": "string",
+            "example": "2026-04-01T08:00:00.000Z"
+          },
+          "estimatedHours": {
+            "type": "number",
+            "example": 8
+          },
+          "parentTaskId": {
+            "type": "string",
+            "example": "uuid-parent-task"
           }
         }
       },
       "UploadDocumentDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "project-brief.pdf"
+          },
+          "entityType": {
+            "type": "string",
+            "example": "projects",
+            "description": "Preferred runtime entity or legacy module name"
+          },
+          "moduleName": {
+            "type": "string",
+            "example": "projects",
+            "description": "Legacy alias kept for compatibility"
+          },
+          "entityId": {
+            "type": "string",
+            "example": "uuid"
+          },
+          "category": {
+            "type": "string",
+            "example": "design"
+          },
+          "versionLabel": {
+            "type": "string",
+            "example": "v1.0"
+          },
+          "approvalRequired": {
+            "type": "boolean",
+            "example": true
+          },
+          "shareMode": {
+            "type": "string",
+            "example": "internal",
+            "enum": [
+              "internal",
+              "external",
+              "restricted"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "example": "Initial release package"
+          },
+          "tags": {
+            "example": [
+              "design",
+              "client"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ApproveDocumentDto": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "example": "approved",
+            "enum": [
+              "approved",
+              "rejected"
+            ]
+          },
+          "comment": {
+            "type": "string",
+            "example": "Approved after final review"
+          },
+          "versionLabel": {
+            "type": "string",
+            "example": "v1.1"
+          },
+          "parentDocumentId": {
+            "type": "string",
+            "example": "uuid-parent-document"
+          }
+        }
       },
       "CreateCommunicationDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "example": "lead"
+          },
+          "entityId": {
+            "type": "string",
+            "example": "uuid-entity"
+          },
+          "channel": {
+            "type": "string",
+            "example": "call"
+          },
+          "direction": {
+            "type": "string",
+            "example": "inbound",
+            "enum": [
+              "inbound",
+              "outbound",
+              "internal"
+            ]
+          },
+          "subject": {
+            "type": "string",
+            "example": "Initial discovery call"
+          },
+          "summary": {
+            "type": "string",
+            "example": "Discussed project scope and budget"
+          },
+          "occurredAt": {
+            "type": "string",
+            "example": "2026-03-28T10:00:00.000Z"
+          },
+          "participantIds": {
+            "example": [
+              "uuid-user-1",
+              "uuid-user-2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nextActionAt": {
+            "type": "string",
+            "example": "2026-03-29T10:00:00.000Z"
+          },
+          "content": {
+            "type": "string",
+            "example": "Call notes and transcript text"
+          },
+          "contactId": {
+            "type": "string",
+            "example": "uuid-contact"
+          },
+          "moduleName": {
+            "type": "string",
+            "example": "communications"
+          },
+          "metadata": {
+            "type": "object",
+            "example": {
+              "source": "phone"
+            }
+          },
+          "type": {
+            "type": "string",
+            "example": "whatsapp",
+            "description": "Backward-compatible alias for channel"
+          }
+        },
+        "required": [
+          "channel",
+          "subject"
+        ]
+      },
+      "QuotationLineItemDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "Modular wardrobe installation"
+          },
+          "quantity": {
+            "type": "number",
+            "example": 1
+          },
+          "unitPrice": {
+            "type": "number",
+            "example": 12500
+          },
+          "taxRate": {
+            "type": "number",
+            "example": 0.18
+          }
+        },
+        "required": [
+          "description",
+          "quantity",
+          "unitPrice"
+        ]
       },
       "CreateQuotationDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "leadId": {
+            "type": "string",
+            "example": "uuid-lead"
+          },
+          "projectId": {
+            "type": "string",
+            "example": "uuid-project"
+          },
+          "accountId": {
+            "type": "string",
+            "example": "uuid-account"
+          },
+          "contactId": {
+            "type": "string",
+            "example": "uuid-contact"
+          },
+          "currency": {
+            "type": "string",
+            "example": "INR"
+          },
+          "validUntil": {
+            "type": "string",
+            "example": "2026-04-30"
+          },
+          "taxMode": {
+            "type": "string",
+            "example": "inclusive",
+            "enum": [
+              "inclusive",
+              "exclusive",
+              "exempt"
+            ]
+          },
+          "discount": {
+            "type": "number",
+            "example": 0
+          },
+          "notes": {
+            "type": "string",
+            "example": "Standard terms apply"
+          },
+          "terms": {
+            "type": "string",
+            "example": "Net 30, subject to scope sign-off"
+          },
+          "lineItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuotationLineItemDto"
+            }
+          },
+          "items": {
+            "description": "Backward-compatible alias for lineItems",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuotationLineItemDto"
+            }
+          }
+        }
       },
       "CreateExpenseDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "example": "uuid-project"
+          },
+          "category": {
+            "type": "string",
+            "example": "materials",
+            "enum": [
+              "travel",
+              "materials",
+              "labor",
+              "software",
+              "marketing",
+              "other"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "example": 12500
+          },
+          "currency": {
+            "type": "string",
+            "example": "INR"
+          },
+          "description": {
+            "type": "string",
+            "example": "Vendor invoice for wardrobes"
+          },
+          "expenseDate": {
+            "type": "string",
+            "example": "2026-03-28"
+          },
+          "vendorId": {
+            "type": "string",
+            "example": "uuid-vendor"
+          },
+          "receiptDocumentId": {
+            "type": "string",
+            "example": "uuid-document"
+          },
+          "billable": {
+            "type": "boolean",
+            "example": true
+          },
+          "taxAmount": {
+            "type": "number",
+            "example": 2250
+          },
+          "notes": {
+            "type": "string",
+            "example": "Pending approval"
+          }
+        },
+        "required": [
+          "projectId",
+          "category",
+          "amount"
+        ]
       },
       "UpdateWorkflowRuleDto": {
         "type": "object",
         "properties": {}
+      },
+      "UpdateNotificationDto": {
+        "type": "object",
+        "properties": {
+          "isRead": {
+            "type": "boolean",
+            "example": true
+          },
+          "readAt": {
+            "type": "string",
+            "example": "2026-03-28T10:00:00.000Z"
+          },
+          "note": {
+            "type": "string",
+            "example": "dismissed from inbox"
+          }
+        }
       },
       "UpdateRolePermissionsDto": {
         "type": "object",

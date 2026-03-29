@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Body, Param, Query, UseGuards } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto, UpdateContactDto } from './dto/contact.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
@@ -10,8 +10,13 @@ export class ContactsController {
   constructor(private contactsService: ContactsService) {}
 
   @Get()
-  async findAll(@CurrentUser() user: any) {
-    return this.contactsService.findAll(user);
+  async findAll(@Query() query: any, @CurrentUser() user: any) {
+    return this.contactsService.findAll(query, user);
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string, @CurrentUser() user: any) {
+    return this.contactsService.findOne(id, user);
   }
 
   @Post()

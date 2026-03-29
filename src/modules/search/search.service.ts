@@ -7,11 +7,26 @@ export class SearchService {
   constructor(private db: DatabaseService) {}
 
   async globalSearch(dto: SearchQueryDto, user: any) {
-    return this.db.callDispatcher('fn_search_operations', {
+    return this.callRuntimeAware('search.global', 'fn_search_operations', {
       operation: 'global_search',
       data: dto,
       requestedBy: user.id,
-      role: user.role,
+      role: user.role ?? user.roleName,
+      permissions: user.permissions ?? [],
     });
+  }
+
+  private async callRuntimeAware(
+    endpointKey: string,
+    fallbackFn: string,
+    payload: Record<string, unknown>,
+  ) {
+    const registryEntry = await this.db.getRegistryEntry(endpointKey);
+
+    if (registryEntry?.dispatcherFn && registryEntry.isEnabled) {
+      return this.db.callDispatcher(registryEntry.dispatcherFn, payload);
+    }
+
+    return this.db.callDispatcher(fallbackFn, payload);
   }
 }

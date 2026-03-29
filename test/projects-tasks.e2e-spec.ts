@@ -6,6 +6,7 @@ describe('ProjectBackbone (e2e)', () => {
   let app: INestApplication;
   let adminCookie: string[];
   let createdProjectId: string;
+  const suffix = `proj-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
   beforeAll(async () => {
     app = await createTestApp();
@@ -21,7 +22,7 @@ describe('ProjectBackbone (e2e)', () => {
       .post('/api/projects')
       .set('Cookie', adminCookie)
       .send({
-        title: 'E2E Operational Project',
+        title: `Project ${suffix}`,
         description: 'Test project backbone',
         status: 'planning',
         estimatedValue: 10000
@@ -29,6 +30,7 @@ describe('ProjectBackbone (e2e)', () => {
       .expect(201);
 
     expect(response.body.rid).toBe('s-project-created');
+    expect(response.body.data.projectNumber).toBeDefined();
     createdProjectId = response.body.data.id;
   });
 
@@ -38,13 +40,15 @@ describe('ProjectBackbone (e2e)', () => {
       .set('Cookie', adminCookie)
       .send({
         projectId: createdProjectId,
-        title: 'Initial Setup Task',
+        title: `Task ${suffix}`,
         priority: 'high',
-        status: 'todo'
+        status: 'todo',
+        estimatedHours: 8
       })
       .expect(201)
       .expect((res) => {
         expect(res.body.rid).toBe('s-task-created');
+        expect(res.body.data.taskNumber).toBeDefined();
       });
   });
 
@@ -56,5 +60,25 @@ describe('ProjectBackbone (e2e)', () => {
       .expect((res) => {
         expect(res.body.rid).toBe('s-tasks-listed');
       });
+  });
+
+  it('/api/projects (GET) - List Templates', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/api/projects/templates')
+      .set('Cookie', adminCookie)
+      .expect(200);
+
+    expect(response.body.rid).toBe('s-templates-listed');
+    expect(Array.isArray(response.body.data)).toBe(true);
+  });
+
+  it('/api/projects/:id/activity (GET) - Activity Feed', async () => {
+    const response = await request(app.getHttpServer())
+      .get(`/api/projects/${createdProjectId}/activity`)
+      .set('Cookie', adminCookie)
+      .expect(200);
+
+    expect(response.body.rid).toBe('s-audit-logs-listed');
+    expect(Array.isArray(response.body.data)).toBe(true);
   });
 });

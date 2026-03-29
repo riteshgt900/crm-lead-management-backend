@@ -77,6 +77,6 @@ END; $$;
 
 ## 5. MIGRATION & DEPLOYMENT
 - **Location**: `database/migrations/V001__...sql`
-- **Idempotency**: Use `IF NOT EXISTS` and `CREATE OR REPLACE`.
-- **Versioning**: Never edit a migration after it's run. Add a new one.
-- **Workflow**: `migrate.js` -> `dump-schema.js` -> `seed.js`.
+- **Migration Tracker**: Uses `tools/migrate.js` with a dedicated `crm.schema_migrations` table to track execution state and prevent non-idempotent script collisions.
+- **Audit Activation**: Core mutation tables (`leads`, `projects`, `tasks`) have the `trg_audit_operation` trigger active, feeding the `audit_logs` table for chronological history.
+- **Workflow**: `migrate.js` (Tracked) -> `seed.js`.

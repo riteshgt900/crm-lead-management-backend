@@ -1,15 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
-import { UpdateWorkflowRuleDto } from './dto/workflow.dto';
+import { ListWorkflowRulesQueryDto, UpdateWorkflowRuleDto } from './dto/workflow.dto';
+
+function buildWorkflowContext(user: any) {
+  return {
+    requestedBy: user?.id,
+    role: user?.roleName ?? user?.role ?? null,
+    permissions: user?.permissions ?? [],
+  };
+}
 
 @Injectable()
 export class WorkflowsService {
   constructor(private db: DatabaseService) {}
 
-  async findAll() {
+  async findAll(query: ListWorkflowRulesQueryDto, user: any) {
     return this.db.callDispatcher('fn_workflow_operations', {
       operation: 'list_rules',
-      data: {},
+      data: query || {},
+      ...buildWorkflowContext(user),
     });
   }
 
@@ -17,7 +26,7 @@ export class WorkflowsService {
     return this.db.callDispatcher('fn_workflow_operations', {
       operation: 'update_rule',
       data: { id, ...dto },
-      requestedBy: user.id,
+      ...buildWorkflowContext(user),
     });
   }
 }

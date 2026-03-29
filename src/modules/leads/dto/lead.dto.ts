@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsEnum, IsNumber, IsPositive, IsOptional, IsUUID } from 'class-validator';
 
 export class CreateLeadDto {
@@ -24,6 +24,8 @@ export class CreateLeadDto {
   @IsUUID() @IsOptional() assignedTo?: string;
 }
 
+export class UpdateLeadDto extends PartialType(CreateLeadDto) {}
+
 export class UpdateLeadStatusDto {
   @ApiProperty({ example: 'negotiating', description: 'New status for the lead' })
   @IsNotEmpty() status!: string;
@@ -33,6 +35,11 @@ export class UpdateLeadStatusDto {
 
   @ApiPropertyOptional({ example: '2026-04-01', description: 'Next follow-up date' })
   @IsOptional() @IsString() followUpAt?: string;
+}
+
+export class ConvertLeadDto {
+  @ApiPropertyOptional({ example: 'uuid-template', description: 'Optional project template ID to clone phases/tasks' })
+  @IsOptional() @IsUUID() templateId?: string;
 }
 
 export class BulkUpdateLeadsDto {

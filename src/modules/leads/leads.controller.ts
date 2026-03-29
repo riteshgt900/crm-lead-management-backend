@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Patch, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Body, Param, Query, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { LeadsService } from './leads.service';
-import { CreateLeadDto, UpdateLeadStatusDto, BulkUpdateLeadsDto } from './dto/lead.dto';
+import { CreateLeadDto, UpdateLeadDto, UpdateLeadStatusDto, BulkUpdateLeadsDto, ConvertLeadDto } from './dto/lead.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ApiResponseDto } from '../../common/dto/api-response.dto';
@@ -15,8 +15,8 @@ export class LeadsController {
   @Get()
   @ApiOperation({ summary: 'List all leads', description: 'Returns a paginated list of leads assigned to or visible to the current user.' })
   @ApiResponse({ status: 200, description: 'List of leads retrieved successfully', type: ApiResponseDto })
-  async findAll(@CurrentUser() user: any) {
-    return this.leadsService.findAll(user);
+  async findAll(@Query() query: any, @CurrentUser() user: any) {
+    return this.leadsService.findAll(query, user);
   }
 
   @Get(':id')
@@ -33,6 +33,13 @@ export class LeadsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   async create(@Body() dto: CreateLeadDto, @CurrentUser() user: any) {
     return this.leadsService.create(dto, user);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update lead details' })
+  @ApiResponse({ status: 200, description: 'Lead updated successfully', type: ApiResponseDto })
+  async updateLead(@Param('id') id: string, @Body() dto: UpdateLeadDto, @CurrentUser() user: any) {
+    return this.leadsService.updateLead(id, dto, user);
   }
 
   @Patch(':id/status')
@@ -53,7 +60,7 @@ export class LeadsController {
   @ApiOperation({ summary: 'Convert lead to project' })
   @ApiResponse({ status: 201, description: 'Lead converted successfully', type: ApiResponseDto })
   @ApiResponse({ status: 400, description: 'Contact mapping required before conversion' })
-  async convert(@Param('id') id: string, @CurrentUser() user: any) {
-    return this.leadsService.convert(id, user);
+  async convert(@Param('id') id: string, @Body() dto: ConvertLeadDto, @CurrentUser() user: any) {
+    return this.leadsService.convert(id, dto, user);
   }
 }

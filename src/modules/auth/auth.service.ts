@@ -1,20 +1,14 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
-import { LoginDto } from './dto/login.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
+import { LoginDto } from './dto/login.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private db: DatabaseService) {}
+  constructor(private readonly db: DatabaseService) {}
 
   async login(dto: LoginDto) {
-    // In a real app, we'd hash check the password here if not handled in SQL
-    // But architecture says ALL logic in SQL. 
-    // However, bcrypt is usually done in JS for CPU salt safety.
-    // I will assume the dispatcher handles the user lookup and returns the hash if needed,
-    // or better, the dispatcher handles the login entirely.
-    
     return this.db.callDispatcher('fn_auth_operations', {
       operation: 'login',
       data: dto,

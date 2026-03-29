@@ -14,8 +14,11 @@ BEGIN
     CASE v_op
         WHEN 'login' THEN
             -- Find user by email
-            SELECT * INTO v_user FROM users 
-            WHERE email = v_data->>'email' AND deleted_at IS NULL;
+            SELECT u.*, r.slug as role_slug
+            FROM users u
+            JOIN roles r ON u.role_id = r.id
+            WHERE u.email = v_data->>'email' AND u.deleted_at IS NULL
+            INTO v_user;
 
             -- Check if user exists and password matches
             IF v_user.id IS NULL OR v_user.password_hash != crypt(v_data->>'password', v_user.password_hash) THEN
@@ -29,6 +32,11 @@ BEGIN
             INSERT INTO sessions (user_id, token, expires_at)
             VALUES (v_user.id, v_session_token::UUID, v_expires_at);
 
+            -- Get permissions
+            SELECT jsonb_agg(p.slug) INTO v_res FROM role_permissions rp
+            JOIN permissions p ON rp.permission_id = p.id
+            WHERE rp.role_id = v_user.role_id;
+
             -- Return success with token and profile data
             RETURN jsonb_build_object(
                 'rid', 's-login-success',
@@ -38,30 +46,16 @@ BEGIN
                     'user', jsonb_build_object(
                         'id', v_user.id,
                         'email', v_user.email,
-                        'fullName', v_user.full_name,
-                        'role', (SELECT slug FROM roles WHERE id = v_user.role_id)
+                        'firstName', split_part(v_user.full_name, ' ', 1),
+                        'lastName', substr(v_user.full_name, length(split_part(v_user.full_name, ' ', 1)) + 2),
+                        'roleName', v_user.role_slug,
+                        'permissions', COALESCE(v_res, '[]'::jsonb)
                     )
                 )
             );
 
         WHEN 'validate_session' THEN
-            -- Look up session
-            -- Note: For simplicity in skeleton we are checking token directly here, 
-            -- but the token_hash column exists if we wanted to hash. 
-            -- However, looking up session by *hashed* token is difficult without the original.
-            -- So we'll update the table to store the raw token for lookup (or use a secondary indexed hash).
-            -- For now, we will perform a direct token lookup by updating V007 later if needed.
-            -- CURRENT IMPLEMENTATION: Matches token directly stored or via lookup.
-            
-            -- Wait, V007 has token_hash. To validate, we need to iterate or use a fast lookup.
-            -- Secure alternative: Store token as `token` (plain) but INDEX it.
-            
-            -- FOR NOW: Assuming p_payload->'data'->>'token' is the input.
-            -- We'll query sessions and compare. 
-            -- To make it fast, we look up the *latest* session for the user? No.
-            -- We'll pivot to a simpler 'token' column for the skeleton to ensure validation works.
-            
-            SELECT s.*, u.email, u.full_name, r.slug as role_slug
+            SELECT s.*, u.email, u.full_name, r.slug as role_slug, r.id as role_id
             INTO v_user
             FROM sessions s
             JOIN users u ON s.user_id = u.id
@@ -73,14 +67,21 @@ BEGIN
                 RETURN fn_error_envelope('e-session-invalid', 401, 'Session expired or invalid');
             END IF;
 
+            -- Get permissions
+            SELECT jsonb_agg(p.slug) INTO v_res FROM role_permissions rp
+            JOIN permissions p ON rp.permission_id = p.id
+            WHERE rp.role_id = v_user.role_id;
+
             RETURN jsonb_build_object(
                 'rid', 's-session-valid',
                 'statusCode', 200,
                 'data', jsonb_build_object(
                     'id', v_user.user_id,
                     'email', v_user.email,
-                    'fullName', v_user.full_name,
-                    'role', v_user.role_slug
+                    'firstName', split_part(v_user.full_name, ' ', 1),
+                    'lastName', substr(v_user.full_name, length(split_part(v_user.full_name, ' ', 1)) + 2),
+                    'roleName', v_user.role_slug,
+                    'permissions', COALESCE(v_res, '[]'::jsonb)
                 )
             );
 
@@ -89,7 +90,7 @@ BEGIN
             RETURN jsonb_build_object('rid', 's-logout-success', 'statusCode', 200, 'data', null);
 
         WHEN 'get_profile' THEN
-            SELECT u.id, u.email, u.full_name, r.slug as role
+            SELECT u.id, u.email, u.full_name, r.slug as role_slug, r.id as role_id
             INTO v_user
             FROM users u
             JOIN roles r ON u.role_id = r.id
@@ -99,10 +100,22 @@ BEGIN
                 RETURN fn_error_envelope('e-user-not-found', 404, 'User does not exist');
             END IF;
 
+            -- Get permissions
+            SELECT jsonb_agg(p.slug) INTO v_res FROM role_permissions rp
+            JOIN permissions p ON rp.permission_id = p.id
+            WHERE rp.role_id = v_user.role_id;
+
             RETURN jsonb_build_object(
                 'rid', 's-profile-loaded',
                 'statusCode', 200,
-                'data', row_to_json(v_user)
+                'data', jsonb_build_object(
+                    'id', v_user.id,
+                    'email', v_user.email,
+                    'firstName', split_part(v_user.full_name, ' ', 1),
+                    'lastName', substr(v_user.full_name, length(split_part(v_user.full_name, ' ', 1)) + 2),
+                    'roleName', v_user.role_slug,
+                    'permissions', COALESCE(v_res, '[]'::jsonb)
+                )
             );
 
         ELSE

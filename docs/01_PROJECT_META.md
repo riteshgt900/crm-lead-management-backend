@@ -94,19 +94,21 @@ MAIL_FROM=notifications@crm.local
 ### Module Status
 | Module | Coverage | Status |
 | :--- | :--- | :--- |
-| **3.1 Lead Management** | Pipeline, reminders, conversion | [DONE] |
-| **3.2 Project Management**| Phases, milestones, members | [DONE] |
-| **3.3 Task Management** | Subtasks, Kanban API, time logs| [DONE] |
-| **3.4 Stakeholders** | Communication logs, sharing | [DONE] |
-| **3.5 Documents** | Versioning, approval workflow, secure uploads | [DONE] |
-| **3.6 Automation** | 7 default rules, Slack/WhatsApp| [DONE] |
-| **3.7 RBAC & Settings** | Dynamic permissions, Configurable UI, Super Admin Settings pane | [DONE] |
+| **3.1 Lead Management** | Intake, Pipeline, Conversion | [DONE] |
+| **3.2 Project Management**| Phases, Milestones, Templates | [DONE] |
+| **3.3 Task Management** | Kanban, Escalations, Templates| [DONE] |
+| **3.4 Stakeholders** | Categories, Project Feeds | [DONE] |
+| **3.5 Documents** | Versioning, Secure Uploads | [DONE] (V065) |
+| **3.6 Automation** | Lead -> Project blueprints | [DONE] (V066) |
+| **3.7 RBAC & Settings** | Dynamic permissions, Roles | [DONE] |
+| **3.8 Reporting** | CSV Export, Weekly Summary | [DONE] (V049) |
+| **3.9 Audit Logs** | Chronological History Feed  | [DONE] (V034) |
 
 ### Totals
-- **Tables**: 32 Core + Mapping Tables
-- **Endpoints**: 130+
-- **Migrations**: 63 (Applied & Verified)
-- **Roles**: Super Admin, Admin, PM, Team, External
+- **Tables**: 34 Core + Mapping Tables
+- **Endpoints**: 140+
+- **Migrations**: 65 (Applied & Verified)
+- **Roles**: Super Admin, Admin, PM, Team, External (Architect/PMC/Vendor)
 
 ---
 

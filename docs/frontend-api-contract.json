@@ -1,0 +1,5694 @@
+{
+  "auth": {
+    "strategy": "cookie",
+    "cookieName": "crm_session",
+    "withCredentials": true
+  },
+  "lookups": {
+    "lead_stage": [
+      {
+        "key": "new",
+        "color": "#2563eb",
+        "label": "New",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "contacted",
+        "color": "#0ea5e9",
+        "label": "Contacted",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "qualified",
+        "color": "#16a34a",
+        "label": "Qualified",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "proposal_sent",
+        "color": "#7c3aed",
+        "label": "Proposal Sent",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "negotiation",
+        "color": "#d97706",
+        "label": "Negotiation",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      },
+      {
+        "key": "won",
+        "color": "#15803d",
+        "label": "Won",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      },
+      {
+        "key": "lost",
+        "color": "#dc2626",
+        "label": "Lost",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 7
+      }
+    ],
+    "lead_source": [
+      {
+        "key": "website",
+        "color": "#2563eb",
+        "label": "Website",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "referral",
+        "color": "#0f766e",
+        "label": "Referral",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "social_media",
+        "color": "#7c3aed",
+        "label": "Social Media",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "cold_call",
+        "color": "#b45309",
+        "label": "Cold Call",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "email_campaign",
+        "color": "#0ea5e9",
+        "label": "Email Campaign",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      },
+      {
+        "key": "event",
+        "color": "#d946ef",
+        "label": "Event",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      },
+      {
+        "key": "partner",
+        "color": "#16a34a",
+        "label": "Partner",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 7
+      },
+      {
+        "key": "other",
+        "color": "#6b7280",
+        "label": "Other",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 8
+      }
+    ],
+    "task_status": [
+      {
+        "key": "todo",
+        "color": "#2563eb",
+        "label": "To Do",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "in_progress",
+        "color": "#0ea5e9",
+        "label": "In Progress",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "under_review",
+        "color": "#7c3aed",
+        "label": "Under Review",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "completed",
+        "color": "#16a34a",
+        "label": "Completed",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "cancelled",
+        "color": "#dc2626",
+        "label": "Cancelled",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      },
+      {
+        "key": "blocked",
+        "color": "#b45309",
+        "label": "Blocked",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      }
+    ],
+    "account_type": [
+      {
+        "key": "company",
+        "color": "#2563eb",
+        "label": "Company",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "individual",
+        "color": "#0f766e",
+        "label": "Individual",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "partner",
+        "color": "#7c3aed",
+        "label": "Partner",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      }
+    ],
+    "project_type": [
+      {
+        "key": "implementation",
+        "color": "#2563eb",
+        "label": "Implementation",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "design",
+        "color": "#7c3aed",
+        "label": "Design",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "support",
+        "color": "#0f766e",
+        "label": "Support",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      }
+    ],
+    "lead_category": [
+      {
+        "key": "residential",
+        "color": "#2563eb",
+        "label": "Residential",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "commercial",
+        "color": "#0f766e",
+        "label": "Commercial",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "retail",
+        "color": "#7c3aed",
+        "label": "Retail",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "industrial",
+        "color": "#b45309",
+        "label": "Industrial",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      }
+    ],
+    "task_priority": [
+      {
+        "key": "low",
+        "color": "#6b7280",
+        "label": "Low",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 1
+      },
+      {
+        "key": "medium",
+        "color": "#2563eb",
+        "label": "Medium",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 2
+      },
+      {
+        "key": "high",
+        "color": "#d97706",
+        "label": "High",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "critical",
+        "color": "#dc2626",
+        "label": "Critical",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      }
+    ],
+    "project_health": [
+      {
+        "key": "green",
+        "color": "#16a34a",
+        "label": "Green",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "amber",
+        "color": "#d97706",
+        "label": "Amber",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "red",
+        "color": "#dc2626",
+        "label": "Red",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      }
+    ],
+    "project_status": [
+      {
+        "key": "planning",
+        "color": "#2563eb",
+        "label": "Planning",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "active",
+        "color": "#16a34a",
+        "label": "Active",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "on_hold",
+        "color": "#d97706",
+        "label": "On Hold",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "completed",
+        "color": "#15803d",
+        "label": "Completed",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "cancelled",
+        "color": "#dc2626",
+        "label": "Cancelled",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      },
+      {
+        "key": "archived",
+        "color": "#6b7280",
+        "label": "Archived",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      }
+    ],
+    "workflow_event": [
+      {
+        "key": "lead_created",
+        "color": "#2563eb",
+        "label": "Lead Created",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "status_changed",
+        "color": "#0ea5e9",
+        "label": "Lead Status Changed",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "lead_converted",
+        "color": "#16a34a",
+        "label": "Lead Converted",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "task_created",
+        "color": "#7c3aed",
+        "label": "Task Created",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "task_status_changed",
+        "color": "#d97706",
+        "label": "Task Status Changed",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      }
+    ],
+    "document_status": [
+      {
+        "key": "draft",
+        "color": "#6b7280",
+        "label": "Draft",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "pending_approval",
+        "color": "#d97706",
+        "label": "Pending Approval",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "approved",
+        "color": "#16a34a",
+        "label": "Approved",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "rejected",
+        "color": "#dc2626",
+        "label": "Rejected",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "archived",
+        "color": "#4b5563",
+        "label": "Archived",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      }
+    ],
+    "expense_category": [
+      {
+        "key": "travel",
+        "color": "#2563eb",
+        "label": "Travel",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 1
+      },
+      {
+        "key": "materials",
+        "color": "#16a34a",
+        "label": "Materials",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 2
+      },
+      {
+        "key": "labor",
+        "color": "#d97706",
+        "label": "Labor",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "software",
+        "color": "#7c3aed",
+        "label": "Software",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "marketing",
+        "color": "#0ea5e9",
+        "label": "Marketing",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      },
+      {
+        "key": "other",
+        "color": "#6b7280",
+        "label": "Other",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      }
+    ],
+    "quotation_status": [
+      {
+        "key": "draft",
+        "color": "#6b7280",
+        "label": "Draft",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "sent",
+        "color": "#2563eb",
+        "label": "Sent",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "accepted",
+        "color": "#16a34a",
+        "label": "Accepted",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "rejected",
+        "color": "#dc2626",
+        "label": "Rejected",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "expired",
+        "color": "#4b5563",
+        "label": "Expired",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      }
+    ],
+    "document_share_mode": [
+      {
+        "key": "internal",
+        "color": "#2563eb",
+        "label": "Internal",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "client",
+        "color": "#0f766e",
+        "label": "Client",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "public",
+        "color": "#7c3aed",
+        "label": "Public",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      }
+    ]
+  },
+  "reports": [
+    {
+      "label": "Expense Summary",
+      "reportKey": "expense_summary",
+      "definition": {
+        "entity": "expense",
+        "metrics": [
+          "amount",
+          "tax_amount",
+          "category"
+        ]
+      },
+      "description": "Project expense trend summary"
+    },
+    {
+      "label": "Pipeline Overview",
+      "reportKey": "pipeline_overview",
+      "definition": {
+        "entity": "lead",
+        "metrics": [
+          "count",
+          "estimatedValue",
+          "stage"
+        ]
+      },
+      "description": "Lead pipeline conversion summary"
+    },
+    {
+      "label": "Project Health",
+      "reportKey": "project_health",
+      "definition": {
+        "entity": "project",
+        "metrics": [
+          "status",
+          "health",
+          "percent_complete",
+          "budget"
+        ]
+      },
+      "description": "Project delivery status and health signals"
+    },
+    {
+      "label": "Revenue Forecast",
+      "reportKey": "revenue_forecast",
+      "definition": {
+        "entity": "quotation",
+        "metrics": [
+          "subtotal_amount",
+          "tax_amount",
+          "total_amount"
+        ]
+      },
+      "description": "Expected quotation and project revenue"
+    },
+    {
+      "label": "Task Workload",
+      "reportKey": "task_workload",
+      "definition": {
+        "entity": "task",
+        "metrics": [
+          "status",
+          "priority",
+          "estimated_hours",
+          "escalation_sla_hours"
+        ]
+      },
+      "description": "Task ownership and SLA distribution"
+    }
+  ],
+  "entities": [
+    {
+      "label": "Account",
+      "fields": [
+        {
+          "label": "Account Name",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "name",
+          "sortOrder": 10,
+          "columnName": "name",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Acme Interiors",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "type",
+          "sortOrder": 20,
+          "columnName": "type",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "company",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "account_type",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Industry",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "industry",
+          "sortOrder": 30,
+          "columnName": "industry",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "Real Estate",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Website",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "website",
+          "sortOrder": 40,
+          "columnName": "website",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "https://example.com",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Owner",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "ownerId",
+          "sortOrder": 50,
+          "columnName": "owner_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Primary Address",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "primaryAddress",
+          "sortOrder": 60,
+          "columnName": "primary_address",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "123 Main Street",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Billing Address",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "billingAddress",
+          "sortOrder": 70,
+          "columnName": "billing_address",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "456 Billing Avenue",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Tax ID",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "taxId",
+          "sortOrder": 80,
+          "columnName": "tax_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "GST-1234",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Notes",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "notes",
+          "sortOrder": 90,
+          "columnName": "notes",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Key enterprise account",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "name",
+        "type",
+        "industry",
+        "website",
+        "ownerId",
+        "taxId"
+      ],
+      "formKey": "account",
+      "metadata": {
+        "module": "crm"
+      },
+      "entityKey": "account",
+      "routeBase": "/api/data/account",
+      "tableName": "accounts",
+      "primaryKey": "id",
+      "titleColumn": "name",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "name": "Acme Interiors",
+          "type": "company",
+          "industry": "real-estate"
+        },
+        "update": {
+          "id": "uuid",
+          "website": "https://example.com"
+        }
+      },
+      "permissionSlug": "accounts:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Communication",
+      "fields": [
+        {
+          "label": "Entity Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "entityType",
+          "sortOrder": 10,
+          "columnName": "entity_type",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "lead",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Module Name",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "text",
+          "fieldKey": "moduleName",
+          "sortOrder": 11,
+          "columnName": "module_name",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "leads",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Entity ID",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "entityId",
+          "sortOrder": 20,
+          "columnName": "entity_id",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Contact",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "contactId",
+          "sortOrder": 30,
+          "columnName": "contact_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Channel",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "channel",
+          "sortOrder": 40,
+          "columnName": "channel",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "call",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Type",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "communication_type",
+          "fieldKey": "type",
+          "sortOrder": 41,
+          "columnName": "type",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "call",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Direction",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "direction",
+          "sortOrder": 50,
+          "columnName": "direction",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "outbound",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Subject",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "subject",
+          "sortOrder": 60,
+          "columnName": "subject",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "Discovery call",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Summary",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "summary",
+          "sortOrder": 70,
+          "columnName": "summary",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Client requested revised timeline",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Content",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "text",
+          "fieldKey": "content",
+          "sortOrder": 71,
+          "columnName": "content",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Detailed communication log",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Occurred At",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "occurredAt",
+          "sortOrder": 80,
+          "columnName": "performed_at",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-03-28T10:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Next Action",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "nextActionAt",
+          "sortOrder": 90,
+          "columnName": "next_action_at",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-03-30T10:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Participants",
+          "config": {},
+          "dataType": "jsonb",
+          "fieldKey": "participantIds",
+          "sortOrder": 100,
+          "columnName": "participant_ids",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": [
+            "00000000-0000-0000-0000-000000000000"
+          ],
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "entityType",
+        "moduleName",
+        "entityId",
+        "contactId",
+        "channel",
+        "type",
+        "direction",
+        "subject",
+        "occurredAt",
+        "nextActionAt"
+      ],
+      "formKey": "communication",
+      "metadata": {
+        "module": "engagement"
+      },
+      "entityKey": "communication",
+      "routeBase": "/api/data/communication",
+      "tableName": "communications",
+      "primaryKey": "id",
+      "titleColumn": "subject",
+      "supportsTags": false,
+      "samplePayload": {
+        "list": {
+          "entityId": "uuid",
+          "entityType": "lead"
+        },
+        "create": {
+          "channel": "call",
+          "subject": "Discovery call",
+          "entityId": "uuid",
+          "entityType": "lead"
+        },
+        "update": {
+          "id": "uuid",
+          "summary": "Client requested revised timeline"
+        }
+      },
+      "permissionSlug": "communications:manage",
+      "defaultSortColumn": "performed_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Contact",
+      "fields": [
+        {
+          "label": "First Name",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "firstName",
+          "sortOrder": 10,
+          "columnName": "first_name",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "John",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Last Name",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "lastName",
+          "sortOrder": 20,
+          "columnName": "last_name",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Doe",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Email",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "email",
+          "sortOrder": 30,
+          "columnName": "email",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "john@example.com",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Phone",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "phone",
+          "sortOrder": 40,
+          "columnName": "phone",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "+1-202-555-0112",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Alternate Phone",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "altPhone",
+          "sortOrder": 50,
+          "columnName": "alt_phone",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "+1-202-555-0113",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Designation",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "designation",
+          "sortOrder": 60,
+          "columnName": "designation",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "Principal Architect",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Category",
+          "config": {},
+          "dataType": "contact_category",
+          "fieldKey": "category",
+          "sortOrder": 70,
+          "columnName": "category",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "architect",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "contact_category",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Account",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "accountId",
+          "sortOrder": 80,
+          "columnName": "account_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Company Name",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "text",
+          "fieldKey": "companyName",
+          "sortOrder": 81,
+          "columnName": "company_name",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "Acme Interiors",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Primary Contact",
+          "config": {},
+          "dataType": "boolean",
+          "fieldKey": "isPrimary",
+          "sortOrder": 90,
+          "columnName": "is_primary",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": true,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Address",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "address",
+          "sortOrder": 100,
+          "columnName": "address",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "123 Main Street",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "City",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "city",
+          "sortOrder": 110,
+          "columnName": "city",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "New York",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "State",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "state",
+          "sortOrder": 120,
+          "columnName": "state",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "NY",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Country",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "country",
+          "sortOrder": 130,
+          "columnName": "country",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "USA",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Postal Code",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "postalCode",
+          "sortOrder": 140,
+          "columnName": "postal_code",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "10001",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Timezone",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "timezone",
+          "sortOrder": 150,
+          "columnName": "timezone",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "America/New_York",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Notes",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "notes",
+          "sortOrder": 160,
+          "columnName": "notes",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Important stakeholder",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "firstName",
+        "lastName",
+        "email",
+        "phone",
+        "altPhone",
+        "designation",
+        "category",
+        "accountId",
+        "companyName",
+        "isPrimary",
+        "city",
+        "state",
+        "country",
+        "postalCode",
+        "timezone"
+      ],
+      "formKey": "contact",
+      "metadata": {
+        "module": "crm"
+      },
+      "entityKey": "contact",
+      "routeBase": "/api/data/contact",
+      "tableName": "contacts",
+      "primaryKey": "id",
+      "titleColumn": "first_name",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "email": "john@example.com",
+          "category": "architect",
+          "lastName": "Doe",
+          "firstName": "John"
+        },
+        "update": {
+          "id": "uuid",
+          "designation": "Principal Architect"
+        }
+      },
+      "permissionSlug": "contacts:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Document",
+      "fields": [
+        {
+          "label": "Entity Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "entityType",
+          "sortOrder": 10,
+          "columnName": "entity_type",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "project",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Module Name",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "text",
+          "fieldKey": "moduleName",
+          "sortOrder": 11,
+          "columnName": "module_name",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "projects",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Entity ID",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "entityId",
+          "sortOrder": 20,
+          "columnName": "entity_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Category",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "category",
+          "sortOrder": 30,
+          "columnName": "category",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "contract",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Title",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "title",
+          "sortOrder": 40,
+          "columnName": "title",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Contract Copy",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "File Name",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "fileName",
+          "sortOrder": 50,
+          "columnName": "file_name",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "contract.pdf",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "File Path",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "filePath",
+          "sortOrder": 60,
+          "columnName": "file_path",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "/uploads/contract.pdf",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "File Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "fileType",
+          "sortOrder": 70,
+          "columnName": "file_type",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "application/pdf",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "File Size",
+          "config": {},
+          "dataType": "bigint",
+          "fieldKey": "fileSize",
+          "sortOrder": 80,
+          "columnName": "file_size",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 1048576,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Version Label",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "versionLabel",
+          "sortOrder": 90,
+          "columnName": "version_label",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "v1",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Approval Required",
+          "config": {},
+          "dataType": "boolean",
+          "fieldKey": "approvalRequired",
+          "sortOrder": 100,
+          "columnName": "approval_required",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": true,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Share Mode",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "shareMode",
+          "sortOrder": 110,
+          "columnName": "share_mode",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "internal",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "document_share_mode",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "entityType",
+        "moduleName",
+        "entityId",
+        "category",
+        "title",
+        "fileName",
+        "fileType",
+        "fileSize",
+        "versionLabel",
+        "approvalRequired",
+        "shareMode"
+      ],
+      "formKey": "document",
+      "metadata": {
+        "module": "documents"
+      },
+      "entityKey": "document",
+      "routeBase": "/api/data/document",
+      "tableName": "documents",
+      "primaryKey": "id",
+      "titleColumn": "title",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "entityId": "uuid",
+          "entityType": "project"
+        },
+        "create": {
+          "title": "Contract Copy",
+          "category": "contract",
+          "entityId": "uuid",
+          "entityType": "project"
+        },
+        "update": {
+          "id": "uuid",
+          "approvalRequired": true
+        }
+      },
+      "permissionSlug": "documents:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Expense",
+      "fields": [
+        {
+          "label": "Project",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "projectId",
+          "sortOrder": 10,
+          "columnName": "project_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Category",
+          "config": {},
+          "dataType": "expense_category",
+          "fieldKey": "category",
+          "sortOrder": 20,
+          "columnName": "category",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "materials",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "expense_category",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Vendor",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "vendorId",
+          "sortOrder": 30,
+          "columnName": "vendor_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Amount",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "amount",
+          "sortOrder": 40,
+          "columnName": "amount",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": 1200,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Currency",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "currency",
+          "sortOrder": 50,
+          "columnName": "currency",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "INR",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Expense Date",
+          "config": {},
+          "dataType": "date",
+          "fieldKey": "expenseDate",
+          "sortOrder": 60,
+          "columnName": "expense_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-03-28",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Description",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "description",
+          "sortOrder": 70,
+          "columnName": "description",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Site material purchase",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Receipt Document",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "receiptDocumentId",
+          "sortOrder": 80,
+          "columnName": "receipt_document_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Status",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "status",
+          "sortOrder": 90,
+          "columnName": "status",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "submitted",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Tax Amount",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "taxAmount",
+          "sortOrder": 100,
+          "columnName": "tax_amount",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 0,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "projectId",
+        "category",
+        "vendorId",
+        "amount",
+        "currency",
+        "expenseDate",
+        "receiptDocumentId",
+        "status",
+        "taxAmount"
+      ],
+      "formKey": "expense",
+      "metadata": {
+        "module": "finance"
+      },
+      "entityKey": "expense",
+      "routeBase": "/api/data/expense",
+      "tableName": "expenses",
+      "primaryKey": "id",
+      "titleColumn": "description",
+      "supportsTags": false,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "amount": 1200,
+          "category": "materials",
+          "currency": "INR",
+          "projectId": "uuid"
+        },
+        "update": {
+          "id": "uuid",
+          "description": "Updated receipt notes"
+        }
+      },
+      "permissionSlug": "expenses:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Lead",
+      "fields": [
+        {
+          "label": "Title",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "title",
+          "sortOrder": 10,
+          "columnName": "title",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Interior design for 3BHK",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Description",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "description",
+          "sortOrder": 20,
+          "columnName": "description",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Lead created by website form",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Status",
+          "config": {},
+          "dataType": "lead_status",
+          "fieldKey": "status",
+          "sortOrder": 30,
+          "columnName": "status",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "new",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "lead_stage",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Source",
+          "config": {},
+          "dataType": "lead_source",
+          "fieldKey": "source",
+          "sortOrder": 40,
+          "columnName": "source",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "website",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "lead_source",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Category",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "category",
+          "sortOrder": 50,
+          "columnName": "category",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "residential",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "lead_category",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Stage",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "stage",
+          "sortOrder": 60,
+          "columnName": "stage",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "new",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "lead_stage",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Account",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "accountId",
+          "sortOrder": 70,
+          "columnName": "account_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Primary Contact",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "primaryContactId",
+          "sortOrder": 80,
+          "columnName": "primary_contact_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Contact",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "uuid",
+          "fieldKey": "contactId",
+          "sortOrder": 81,
+          "columnName": "contact_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Phone",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "phone",
+          "sortOrder": 90,
+          "columnName": "phone",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "+1-202-555-0111",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Email",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "email",
+          "sortOrder": 100,
+          "columnName": "email",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "lead@example.com",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Estimated Value",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "estimatedValue",
+          "sortOrder": 110,
+          "columnName": "estimated_value",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 1500000,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Budget Min",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "budgetMin",
+          "sortOrder": 120,
+          "columnName": "budget_min",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 1000000,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Budget Max",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "budgetMax",
+          "sortOrder": 130,
+          "columnName": "budget_max",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 2000000,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Owner",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "ownerId",
+          "sortOrder": 140,
+          "columnName": "owner_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Assigned To",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "uuid",
+          "fieldKey": "assignedTo",
+          "sortOrder": 141,
+          "columnName": "assigned_to",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Expected Close",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "expectedCloseAt",
+          "sortOrder": 150,
+          "columnName": "expected_close_at",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-06-01T00:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Next Follow Up",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "nextFollowUpAt",
+          "sortOrder": 160,
+          "columnName": "next_follow_up_at",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-01T10:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Probability",
+          "config": {},
+          "dataType": "integer",
+          "fieldKey": "probability",
+          "sortOrder": 170,
+          "columnName": "probability",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 65,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Requirement Summary",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "requirementSummary",
+          "sortOrder": 180,
+          "columnName": "requirement_summary",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "3BHK full interior scope",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Lost Reason",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "lostReason",
+          "sortOrder": 190,
+          "columnName": "lost_reason",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Budget mismatch",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Tags",
+          "config": {
+            "storage": "record_tags"
+          },
+          "dataType": "jsonb",
+          "fieldKey": "tags",
+          "sortOrder": 200,
+          "columnName": null,
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": [
+            "priority",
+            "hot"
+          ],
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "title",
+        "status",
+        "source",
+        "category",
+        "stage",
+        "accountId",
+        "primaryContactId",
+        "contactId",
+        "phone",
+        "email",
+        "estimatedValue",
+        "budgetMin",
+        "budgetMax",
+        "ownerId",
+        "assignedTo",
+        "expectedCloseAt",
+        "nextFollowUpAt",
+        "probability"
+      ],
+      "formKey": "lead",
+      "metadata": {
+        "module": "sales"
+      },
+      "entityKey": "lead",
+      "routeBase": "/api/data/lead",
+      "tableName": "leads",
+      "primaryKey": "id",
+      "titleColumn": "title",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "q": "villa",
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "stage": "new",
+          "title": "Interior design for 3BHK",
+          "source": "website",
+          "category": "residential",
+          "estimatedValue": 1500000
+        },
+        "update": {
+          "id": "uuid",
+          "stage": "qualified",
+          "probability": 65
+        }
+      },
+      "permissionSlug": "leads:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Project",
+      "fields": [
+        {
+          "label": "Title",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "title",
+          "sortOrder": 10,
+          "columnName": "title",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Sector 45 Villa",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Description",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "description",
+          "sortOrder": 20,
+          "columnName": "description",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Premium interior execution",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Lead",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "leadId",
+          "sortOrder": 30,
+          "columnName": "lead_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Account",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "accountId",
+          "sortOrder": 40,
+          "columnName": "account_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Contact",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "contactId",
+          "sortOrder": 50,
+          "columnName": "contact_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Template",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "templateId",
+          "sortOrder": 60,
+          "columnName": "template_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Project Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "projectType",
+          "sortOrder": 70,
+          "columnName": "project_type",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "implementation",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "project_type",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Manager",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "managerId",
+          "sortOrder": 80,
+          "columnName": "project_manager_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Project Manager",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "uuid",
+          "fieldKey": "projectManagerId",
+          "sortOrder": 81,
+          "columnName": "project_manager_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Status",
+          "config": {},
+          "dataType": "project_status",
+          "fieldKey": "status",
+          "sortOrder": 90,
+          "columnName": "status",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "planning",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "project_status",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Health",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "health",
+          "sortOrder": 100,
+          "columnName": "health",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "green",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "project_health",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Budget",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "budget",
+          "sortOrder": 110,
+          "columnName": "budget",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 2500000,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Estimated Value",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "numeric",
+          "fieldKey": "estimatedValue",
+          "sortOrder": 111,
+          "columnName": "estimated_value",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 2500000,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Start Date",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "startDate",
+          "sortOrder": 120,
+          "columnName": "start_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-01T00:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "End Date",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "endDate",
+          "sortOrder": 130,
+          "columnName": "end_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-09-30T00:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Location",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "location",
+          "sortOrder": 140,
+          "columnName": "location",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Gurugram",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Percent Complete",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "percentComplete",
+          "sortOrder": 150,
+          "columnName": "percent_complete",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 20,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "title",
+        "leadId",
+        "accountId",
+        "contactId",
+        "templateId",
+        "projectType",
+        "managerId",
+        "projectManagerId",
+        "status",
+        "health",
+        "budget",
+        "estimatedValue",
+        "startDate",
+        "endDate",
+        "location",
+        "percentComplete"
+      ],
+      "formKey": "project",
+      "metadata": {
+        "module": "delivery"
+      },
+      "entityKey": "project",
+      "routeBase": "/api/data/project",
+      "tableName": "projects",
+      "primaryKey": "id",
+      "titleColumn": "title",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "title": "Sector 45 Villa",
+          "budget": 2500000,
+          "status": "planning"
+        },
+        "update": {
+          "id": "uuid",
+          "health": "green",
+          "status": "active"
+        }
+      },
+      "permissionSlug": "projects:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Quotation",
+      "fields": [
+        {
+          "label": "Lead",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "leadId",
+          "sortOrder": 10,
+          "columnName": "lead_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Project",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "projectId",
+          "sortOrder": 20,
+          "columnName": "project_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Account",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "accountId",
+          "sortOrder": 30,
+          "columnName": "account_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Contact",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "contactId",
+          "sortOrder": 40,
+          "columnName": "contact_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Currency",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "currency",
+          "sortOrder": 50,
+          "columnName": "currency",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "INR",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Valid Until",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "validUntil",
+          "sortOrder": 60,
+          "columnName": "valid_until",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-30T00:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Tax Mode",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "taxMode",
+          "sortOrder": 70,
+          "columnName": "tax_mode",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "exclusive",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Discount",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "discount",
+          "sortOrder": 80,
+          "columnName": "discount",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 0,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Terms",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "terms",
+          "sortOrder": 90,
+          "columnName": "terms",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "50% advance, balance on completion",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Notes",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "notes",
+          "sortOrder": 100,
+          "columnName": "notes",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Quote fin-001",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Status",
+          "config": {},
+          "dataType": "quotation_status",
+          "fieldKey": "status",
+          "sortOrder": 110,
+          "columnName": "status",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "draft",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "quotation_status",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Line Items",
+          "config": {
+            "storage": "quotation_items"
+          },
+          "dataType": "jsonb",
+          "fieldKey": "lineItems",
+          "sortOrder": 120,
+          "columnName": null,
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": false,
+          "sampleValue": [
+            {
+              "quantity": 1,
+              "unitPrice": 1000,
+              "description": "Service A"
+            }
+          ],
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Items",
+          "config": {
+            "legacy": true,
+            "storage": "quotation_items"
+          },
+          "dataType": "jsonb",
+          "fieldKey": "items",
+          "sortOrder": 121,
+          "columnName": null,
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": [
+            {
+              "quantity": 1,
+              "unitPrice": 1000,
+              "description": "Service A"
+            }
+          ],
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "leadId",
+        "projectId",
+        "accountId",
+        "contactId",
+        "currency",
+        "validUntil",
+        "taxMode",
+        "discount",
+        "status"
+      ],
+      "formKey": "quotation",
+      "metadata": {
+        "module": "finance"
+      },
+      "entityKey": "quotation",
+      "routeBase": "/api/data/quotation",
+      "tableName": "quotations",
+      "primaryKey": "id",
+      "titleColumn": "quotation_number",
+      "supportsTags": false,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "leadId": "uuid",
+          "currency": "INR",
+          "discount": 0,
+          "lineItems": [
+            {
+              "quantity": 1,
+              "unitPrice": 1000,
+              "description": "Service A"
+            }
+          ]
+        },
+        "update": {
+          "id": "uuid",
+          "status": "sent"
+        }
+      },
+      "permissionSlug": "quotations:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Task",
+      "fields": [
+        {
+          "label": "Project",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "projectId",
+          "sortOrder": 10,
+          "columnName": "project_id",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Phase",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "phaseId",
+          "sortOrder": 20,
+          "columnName": "phase_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Milestone",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "milestoneId",
+          "sortOrder": 30,
+          "columnName": "milestone_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Parent Task",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "parentTaskId",
+          "sortOrder": 40,
+          "columnName": "parent_task_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Title",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "title",
+          "sortOrder": 50,
+          "columnName": "title",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Site measurement",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Description",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "description",
+          "sortOrder": 60,
+          "columnName": "description",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Complete physical site measurement",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Assignee",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "assigneeId",
+          "sortOrder": 70,
+          "columnName": "assigned_to",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Assigned To",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "uuid",
+          "fieldKey": "assignedTo",
+          "sortOrder": 71,
+          "columnName": "assigned_to",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Priority",
+          "config": {},
+          "dataType": "task_priority",
+          "fieldKey": "priority",
+          "sortOrder": 80,
+          "columnName": "priority",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "high",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "task_priority",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Status",
+          "config": {},
+          "dataType": "task_status",
+          "fieldKey": "status",
+          "sortOrder": 90,
+          "columnName": "status",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "todo",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "task_status",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Planned Start",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "plannedStartAt",
+          "sortOrder": 100,
+          "columnName": "planned_start_at",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-01T09:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Start Date",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "timestamptz",
+          "fieldKey": "startDate",
+          "sortOrder": 101,
+          "columnName": "start_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-01T09:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Due At",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "dueAt",
+          "sortOrder": 110,
+          "columnName": "due_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-02T18:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Due Date",
+          "config": {
+            "legacy": true
+          },
+          "dataType": "timestamptz",
+          "fieldKey": "dueDate",
+          "sortOrder": 111,
+          "columnName": "due_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-04-02T18:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Estimated Hours",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "estimatedHours",
+          "sortOrder": 120,
+          "columnName": "estimated_hours",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 8,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Dependencies",
+          "config": {
+            "storage": "task_dependencies"
+          },
+          "dataType": "jsonb",
+          "fieldKey": "dependencyIds",
+          "sortOrder": 130,
+          "columnName": null,
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": [
+            "00000000-0000-0000-0000-000000000000"
+          ],
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Watchers",
+          "config": {
+            "storage": "task_watchers"
+          },
+          "dataType": "jsonb",
+          "fieldKey": "watcherIds",
+          "sortOrder": 140,
+          "columnName": null,
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": [
+            "00000000-0000-0000-0000-000000000000"
+          ],
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "projectId",
+        "phaseId",
+        "milestoneId",
+        "parentTaskId",
+        "title",
+        "assigneeId",
+        "assignedTo",
+        "priority",
+        "status",
+        "plannedStartAt",
+        "startDate",
+        "dueAt",
+        "dueDate",
+        "estimatedHours"
+      ],
+      "formKey": "task",
+      "metadata": {
+        "module": "delivery"
+      },
+      "entityKey": "task",
+      "routeBase": "/api/data/task",
+      "tableName": "tasks",
+      "primaryKey": "id",
+      "titleColumn": "title",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "title": "Site measurement",
+          "status": "todo",
+          "priority": "high",
+          "projectId": "uuid"
+        },
+        "update": {
+          "id": "uuid",
+          "status": "in_progress"
+        }
+      },
+      "permissionSlug": "tasks:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    }
+  ],
+  "endpoints": [
+    {
+      "route": "/api/action/document.approve",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "document.approve",
+      "entityKey": "document",
+      "endpointKey": "action.document.approve",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "decision": "approved"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "decision": "approved"
+      },
+      "permissionSlug": "documents:manage",
+      "responseSchema": {
+        "rid": "s-document-approved"
+      }
+    },
+    {
+      "route": "/api/action/document.share",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "document.share",
+      "entityKey": "document",
+      "endpointKey": "action.document.share",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "email": "client@example.com"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "email": "client@example.com"
+      },
+      "permissionSlug": "documents:manage",
+      "responseSchema": {
+        "rid": "s-document-shared"
+      }
+    },
+    {
+      "route": "/api/action/document.upload",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "document.upload",
+      "entityKey": "document",
+      "endpointKey": "action.document.upload",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Contract",
+        "entityType": "project"
+      },
+      "samplePayload": {
+        "title": "Contract",
+        "entityType": "project"
+      },
+      "permissionSlug": "documents:manage",
+      "responseSchema": {
+        "rid": "s-document-uploaded"
+      }
+    },
+    {
+      "route": "/api/action/:actionKey",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "action.execute",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "action": "lead.convert"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:action",
+      "responseSchema": {
+        "rid": "s-action-complete"
+      }
+    },
+    {
+      "route": "/api/action/lead.convert",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "lead.convert",
+      "entityKey": "lead",
+      "endpointKey": "action.lead.convert",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "templateId": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "templateId": "uuid"
+      },
+      "permissionSlug": "leads:manage",
+      "responseSchema": {
+        "rid": "s-lead-converted"
+      }
+    },
+    {
+      "route": "/api/action/lead.update_status",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "lead.update_status",
+      "entityKey": "lead",
+      "endpointKey": "action.lead.update_status",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "status": "qualified"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "status": "qualified"
+      },
+      "permissionSlug": "leads:manage",
+      "responseSchema": {
+        "rid": "s-lead-status-updated"
+      }
+    },
+    {
+      "route": "/api/share/:token",
+      "method": "GET",
+      "formKey": "document",
+      "authMode": "public",
+      "isPublic": true,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "share.resolve",
+      "entityKey": "document",
+      "endpointKey": "action.share.resolve",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "token": "token"
+      },
+      "samplePayload": {
+        "token": "token"
+      },
+      "permissionSlug": "public",
+      "responseSchema": {
+        "rid": "s-share-resolved"
+      }
+    },
+    {
+      "route": "/api/action/workflow.run_due",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "action"
+      },
+      "actionKey": "workflow.run_due",
+      "entityKey": null,
+      "endpointKey": "action.workflow.run_due",
+      "dispatcherFn": "fn_action_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "settings:manage",
+      "responseSchema": {
+        "rid": "s-workflows-run"
+      }
+    },
+    {
+      "route": "/api/audit",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "alias"
+      },
+      "actionKey": "audit.list_logs",
+      "entityKey": null,
+      "endpointKey": "audit.list_logs",
+      "dispatcherFn": "fn_audit_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "settings:view",
+      "responseSchema": {
+        "rid": "s-audit-logs-listed"
+      }
+    },
+    {
+      "route": "/api/contracts/frontend",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "public",
+      "isPublic": true,
+      "metadata": {
+        "category": "contract"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "contract.frontend",
+      "dispatcherFn": "fn_contract_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "public",
+      "responseSchema": {
+        "rid": "s-frontend-contract"
+      }
+    },
+    {
+      "route": "/api/dashboard/stats",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "alias"
+      },
+      "actionKey": "dashboard.stats",
+      "entityKey": null,
+      "endpointKey": "dashboard.stats",
+      "dispatcherFn": "fn_dashboard_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "dashboard:view",
+      "responseSchema": {
+        "rid": "s-dashboard-stats"
+      }
+    },
+    {
+      "route": "/api/data/account/bulk",
+      "method": "POST",
+      "formKey": "account",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "account",
+      "endpointKey": "data.account.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/account/create",
+      "method": "POST",
+      "formKey": "account",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "account",
+      "endpointKey": "data.account.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "name": "Acme Interiors",
+        "type": "company",
+        "industry": "real-estate"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/account/delete",
+      "method": "POST",
+      "formKey": "account",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "account",
+      "endpointKey": "data.account.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/account/get",
+      "method": "POST",
+      "formKey": "account",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "account",
+      "endpointKey": "data.account.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/account/list",
+      "method": "POST",
+      "formKey": "account",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "account",
+      "endpointKey": "data.account.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/account/update",
+      "method": "POST",
+      "formKey": "account",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "account",
+      "endpointKey": "data.account.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "website": "https://example.com"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/:entityKey/bulk",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "data.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/communication/bulk",
+      "method": "POST",
+      "formKey": "communication",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "communication",
+      "endpointKey": "data.communication.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/communication/create",
+      "method": "POST",
+      "formKey": "communication",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "communication",
+      "endpointKey": "data.communication.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "channel": "call",
+        "subject": "Discovery call",
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/communication/delete",
+      "method": "POST",
+      "formKey": "communication",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "communication",
+      "endpointKey": "data.communication.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/communication/get",
+      "method": "POST",
+      "formKey": "communication",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "communication",
+      "endpointKey": "data.communication.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/communication/list",
+      "method": "POST",
+      "formKey": "communication",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "communication",
+      "endpointKey": "data.communication.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/communication/update",
+      "method": "POST",
+      "formKey": "communication",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "communication",
+      "endpointKey": "data.communication.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "summary": "Client requested revised timeline"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/contact/bulk",
+      "method": "POST",
+      "formKey": "contact",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "contact",
+      "endpointKey": "data.contact.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/contact/create",
+      "method": "POST",
+      "formKey": "contact",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "contact",
+      "endpointKey": "data.contact.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "email": "john@example.com",
+        "category": "architect",
+        "lastName": "Doe",
+        "firstName": "John"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/contact/delete",
+      "method": "POST",
+      "formKey": "contact",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "contact",
+      "endpointKey": "data.contact.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/contact/get",
+      "method": "POST",
+      "formKey": "contact",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "contact",
+      "endpointKey": "data.contact.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/contact/list",
+      "method": "POST",
+      "formKey": "contact",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "contact",
+      "endpointKey": "data.contact.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/contact/update",
+      "method": "POST",
+      "formKey": "contact",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "contact",
+      "endpointKey": "data.contact.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "designation": "Principal Architect"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/:entityKey/create",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "data.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "title": "Example"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/:entityKey/delete",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "data.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/document/bulk",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "document",
+      "endpointKey": "data.document.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/document/create",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "document",
+      "endpointKey": "data.document.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "title": "Contract Copy",
+        "category": "contract",
+        "entityId": "uuid",
+        "entityType": "project"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/document/delete",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "document",
+      "endpointKey": "data.document.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/document/get",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "document",
+      "endpointKey": "data.document.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/document/list",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "document",
+      "endpointKey": "data.document.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "entityId": "uuid",
+        "entityType": "project"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/document/update",
+      "method": "POST",
+      "formKey": "document",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "document",
+      "endpointKey": "data.document.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "approvalRequired": true
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/expense/bulk",
+      "method": "POST",
+      "formKey": "expense",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "expense",
+      "endpointKey": "data.expense.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/expense/create",
+      "method": "POST",
+      "formKey": "expense",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "expense",
+      "endpointKey": "data.expense.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "amount": 1200,
+        "category": "materials",
+        "currency": "INR",
+        "projectId": "uuid"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/expense/delete",
+      "method": "POST",
+      "formKey": "expense",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "expense",
+      "endpointKey": "data.expense.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/expense/get",
+      "method": "POST",
+      "formKey": "expense",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "expense",
+      "endpointKey": "data.expense.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/expense/list",
+      "method": "POST",
+      "formKey": "expense",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "expense",
+      "endpointKey": "data.expense.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/expense/update",
+      "method": "POST",
+      "formKey": "expense",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "expense",
+      "endpointKey": "data.expense.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "description": "Updated receipt notes"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/:entityKey/get",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "data.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/lead/bulk",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "lead",
+      "endpointKey": "data.lead.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/lead/create",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "lead",
+      "endpointKey": "data.lead.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "stage": "new",
+        "title": "Interior design for 3BHK",
+        "source": "website",
+        "category": "residential",
+        "estimatedValue": 1500000
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/lead/delete",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "lead",
+      "endpointKey": "data.lead.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/lead/get",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "lead",
+      "endpointKey": "data.lead.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/lead/list",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "lead",
+      "endpointKey": "data.lead.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "q": "villa",
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/lead/update",
+      "method": "POST",
+      "formKey": "lead",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "lead",
+      "endpointKey": "data.lead.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "stage": "qualified",
+        "probability": 65
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/:entityKey/list",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "data.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/project/bulk",
+      "method": "POST",
+      "formKey": "project",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "project",
+      "endpointKey": "data.project.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/project/create",
+      "method": "POST",
+      "formKey": "project",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "project",
+      "endpointKey": "data.project.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "title": "Sector 45 Villa",
+        "budget": 2500000,
+        "status": "planning"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/project/delete",
+      "method": "POST",
+      "formKey": "project",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "project",
+      "endpointKey": "data.project.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/project/get",
+      "method": "POST",
+      "formKey": "project",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "project",
+      "endpointKey": "data.project.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/project/list",
+      "method": "POST",
+      "formKey": "project",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "project",
+      "endpointKey": "data.project.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/project/update",
+      "method": "POST",
+      "formKey": "project",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "project",
+      "endpointKey": "data.project.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "health": "green",
+        "status": "active"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/quotation/bulk",
+      "method": "POST",
+      "formKey": "quotation",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "quotation",
+      "endpointKey": "data.quotation.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/quotation/create",
+      "method": "POST",
+      "formKey": "quotation",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "quotation",
+      "endpointKey": "data.quotation.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "leadId": "uuid",
+        "currency": "INR",
+        "discount": 0,
+        "lineItems": [
+          {
+            "quantity": 1,
+            "unitPrice": 1000,
+            "description": "Service A"
+          }
+        ]
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/quotation/delete",
+      "method": "POST",
+      "formKey": "quotation",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "quotation",
+      "endpointKey": "data.quotation.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/quotation/get",
+      "method": "POST",
+      "formKey": "quotation",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "quotation",
+      "endpointKey": "data.quotation.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/quotation/list",
+      "method": "POST",
+      "formKey": "quotation",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "quotation",
+      "endpointKey": "data.quotation.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/quotation/update",
+      "method": "POST",
+      "formKey": "quotation",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "quotation",
+      "endpointKey": "data.quotation.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "status": "sent"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/task/bulk",
+      "method": "POST",
+      "formKey": "task",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "task",
+      "endpointKey": "data.task.bulk",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "samplePayload": {
+        "ids": [
+          "uuid-1",
+          "uuid-2"
+        ],
+        "action": "archive"
+      },
+      "permissionSlug": "dynamic:bulk",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/task/create",
+      "method": "POST",
+      "formKey": "task",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "task",
+      "endpointKey": "data.task.create",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "title": "Example"
+      },
+      "samplePayload": {
+        "title": "Site measurement",
+        "status": "todo",
+        "priority": "high",
+        "projectId": "uuid"
+      },
+      "permissionSlug": "dynamic:create",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/task/delete",
+      "method": "POST",
+      "formKey": "task",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "task",
+      "endpointKey": "data.task.delete",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:delete",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/task/get",
+      "method": "POST",
+      "formKey": "task",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "task",
+      "endpointKey": "data.task.get",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/task/list",
+      "method": "POST",
+      "formKey": "task",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "task",
+      "endpointKey": "data.task.list",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {
+        "q": "villa"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/task/update",
+      "method": "POST",
+      "formKey": "task",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "entity-runtime"
+      },
+      "actionKey": null,
+      "entityKey": "task",
+      "endpointKey": "data.task.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "status": "in_progress"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/data/:entityKey/update",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "runtime"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "data.update",
+      "dispatcherFn": "fn_data_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "dynamic:update",
+      "responseSchema": {
+        "rid": "s-data-operation-complete"
+      }
+    },
+    {
+      "route": "/api/meta/bootstrap",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "meta"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "meta.bootstrap",
+      "dispatcherFn": "fn_metadata_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "settings:view",
+      "responseSchema": {
+        "rid": "s-meta-bootstrap"
+      }
+    },
+    {
+      "route": "/api/meta/entities",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "meta"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "meta.entities",
+      "dispatcherFn": "fn_metadata_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "settings:view",
+      "responseSchema": {
+        "rid": "s-meta-entities-listed"
+      }
+    },
+    {
+      "route": "/api/meta/entities/:entityKey",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "meta"
+      },
+      "actionKey": null,
+      "entityKey": null,
+      "endpointKey": "meta.entity",
+      "dispatcherFn": "fn_metadata_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityKey": "lead"
+      },
+      "samplePayload": {},
+      "permissionSlug": "settings:view",
+      "responseSchema": {
+        "rid": "s-meta-entity-loaded"
+      }
+    },
+    {
+      "route": "/api/reports/export",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "alias"
+      },
+      "actionKey": "report.export_csv",
+      "entityKey": null,
+      "endpointKey": "report.export_csv",
+      "dispatcherFn": "fn_report_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "type": "leads"
+      },
+      "samplePayload": {
+        "type": "leads"
+      },
+      "permissionSlug": "reports:manage",
+      "responseSchema": {
+        "rid": "s-report-exported"
+      }
+    },
+    {
+      "route": "/api/reports",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "alias"
+      },
+      "actionKey": "report.generate",
+      "entityKey": null,
+      "endpointKey": "report.generate",
+      "dispatcherFn": "fn_report_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "type": "pipeline_overview"
+      },
+      "samplePayload": {
+        "type": "pipeline_overview"
+      },
+      "permissionSlug": "reports:manage",
+      "responseSchema": {
+        "rid": "s-report-generated"
+      }
+    },
+    {
+      "route": "/api/search",
+      "method": "GET",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "alias"
+      },
+      "actionKey": "search.global",
+      "entityKey": null,
+      "endpointKey": "search.global",
+      "dispatcherFn": "fn_search_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "q": "villa"
+      },
+      "samplePayload": {
+        "q": "villa"
+      },
+      "permissionSlug": "dynamic:view",
+      "responseSchema": {
+        "rid": "s-search-results"
+      }
+    }
+  ],
+  "generatedAt": "2026-03-28T22:15:00.761449+05:30"
+}

@@ -20,7 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:migrate": "node tools/migrate.js",
     "db:seed": "node tools/seed.js",
-    "db:dump": "node tools/dump-schema.js"
+    "db:dump": "node tools/dump-schema.js",
+    "contract:frontend": "node tools/generate-frontend-contract.js",
+    "openapi:generate": "node tools/generate-openapi.js"
   },
   "dependencies": {
     "@nestjs/common": "10.4.5",

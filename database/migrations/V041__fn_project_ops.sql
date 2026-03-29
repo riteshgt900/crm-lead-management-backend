@@ -63,6 +63,16 @@ BEGIN
             SELECT row_to_json(p) INTO v_res FROM (
                 SELECT 
                     p.*,
+                    (SELECT jsonb_agg(ph) FROM (
+                        SELECT * FROM project_phases 
+                        WHERE project_id = p.id AND deleted_at IS NULL 
+                        ORDER BY sort_order
+                    ) ph) as phases,
+                    (SELECT jsonb_agg(m) FROM (
+                        SELECT * FROM project_milestones 
+                        WHERE project_id = p.id AND deleted_at IS NULL 
+                        ORDER BY target_date
+                    ) m) as milestones,
                     (SELECT jsonb_agg(t) FROM tasks t WHERE t.project_id = p.id AND t.deleted_at IS NULL) as tasks,
                     (SELECT jsonb_agg(d) FROM documents d WHERE d.entity_id = p.id AND d.module_name = 'projects' AND d.deleted_at IS NULL) as documents
                 FROM projects p
@@ -71,6 +81,12 @@ BEGIN
             
             IF v_res IS NULL THEN RETURN fn_error_envelope('e-project-not-found', 404, 'Project not found'); END IF;
             RETURN jsonb_build_object('rid', 's-project-loaded', 'statusCode', 200, 'data', v_res);
+
+        WHEN 'list_templates' THEN
+            SELECT jsonb_agg(t) INTO v_res FROM (
+                SELECT * FROM project_templates WHERE deleted_at IS NULL ORDER BY name
+            ) t;
+            RETURN jsonb_build_object('rid', 's-templates-listed', 'statusCode', 200, 'data', COALESCE(v_res, '[]'::jsonb));
 
         ELSE
             RETURN fn_error_envelope('e-invalid-op', 400, 'Invalid operation');

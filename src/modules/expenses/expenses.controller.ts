@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, UseGuards } from '@nestjs/common';
 import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/expense.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
@@ -10,8 +10,8 @@ export class ExpensesController {
   constructor(private expensesService: ExpensesService) {}
 
   @Get()
-  async findAll(@CurrentUser() user: any) {
-    return this.expensesService.findAll(user);
+  async findAll(@Query() query: any, @CurrentUser() user: any) {
+    return this.expensesService.findAll(query, user);
   }
 
   @Post()

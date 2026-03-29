@@ -5,10 +5,13 @@ import { DatabaseService } from '../../database/database.service';
 export class IntegrationsService {
   constructor(private db: DatabaseService) {}
 
-  async getConfigs() {
+  async getConfigs(query: any, user: any) {
     return this.db.callDispatcher('fn_integration_operations', {
       operation: 'get_configs',
-      data: {},
+      data: query || {},
+      requestedBy: user?.id,
+      role: user?.roleName ?? user?.role ?? null,
+      permissions: user?.permissions ?? [],
     });
   }
 }

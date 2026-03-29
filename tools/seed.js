@@ -9,7 +9,11 @@ const pool = new Pool({
 
 async function seed() {
   const migrationsDir = path.join(__dirname, '../database/migrations');
-  const seedFiles = ['V059__seed_workflow_rules.sql', 'V060__seed_admin_user.sql'];
+  const seedFiles = [
+    'V059__seed_workflow_rules.sql', 
+    'V060__seed_admin.sql',
+    'V066__seed_templates.sql'
+  ];
 
   const client = await pool.connect();
 

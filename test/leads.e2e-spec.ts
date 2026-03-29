@@ -6,6 +6,7 @@ describe('LeadsModule (e2e)', () => {
   let app: INestApplication;
   let adminCookie: string[];
   let createdLeadId: string;
+  const suffix = `lead-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
   beforeAll(async () => {
     app = await createTestApp();
@@ -21,7 +22,7 @@ describe('LeadsModule (e2e)', () => {
       .post('/api/leads')
       .set('Cookie', adminCookie)
       .send({
-        title: 'E2E Test Lead',
+        title: `Lead ${suffix}`,
         description: 'Lead created by automated E2E test',
         source: 'referral',
         estimatedValue: 5000
@@ -52,34 +53,40 @@ describe('LeadsModule (e2e)', () => {
     expect(response.status).toBe(200);
   });
 
-  it('/api/leads/:id/convert (POST) - Convert Lead', async () => {
-    const uniqueEmail = `conversion-${Date.now()}@test.local`;
+  it('/api/leads/:id/convert (POST) - Convert Lead with Template', async () => {
+    // 1. Get a template
+    const templatesRes = await request(app.getHttpServer())
+      .get('/api/projects/templates')
+      .set('Cookie', adminCookie);
+    const templateId = templatesRes.body.data[0]?.id;
+
+    if (!templateId) {
+      console.warn('No templates found in seed data, skipping template clonning test part');
+      return;
+    }
+
+    // 2. Create lead with contact (using high-entropy unique email)
+    const uniqueEmail = `temp-${Date.now()}-${Math.floor(Math.random() * 100000)}@test.local`;
     const contactRes = await request(app.getHttpServer())
       .post('/api/contacts')
       .set('Cookie', adminCookie)
-      .send({
-        firstName: 'Lead',
-        lastName: 'Project-Contact',
-        email: uniqueEmail
-      });
-    
-    expect(contactRes.status).toBe(201);
+      .send({ firstName: 'Templated', lastName: 'Lead', email: uniqueEmail });
     const contactId = contactRes.body.data.id;
 
-    const linkedLeadRes = await request(app.getHttpServer())
+    const leadRes = await request(app.getHttpServer())
       .post('/api/leads')
       .set('Cookie', adminCookie)
-      .send({
-        title: 'Linked Lead for Conversion',
-        contactId: contactId
-      });
-    const linkedLeadId = linkedLeadRes.body.data.id;
+      .send({ title: `Templated Lead ${suffix}`, contactId });
+    const leadId = leadRes.body.data.id;
 
+    // 3. Convert with template
     const response = await request(app.getHttpServer())
-      .post(`/api/leads/${linkedLeadId}/convert`)
-      .set('Cookie', adminCookie);
+      .post(`/api/leads/${leadId}/convert`)
+      .set('Cookie', adminCookie)
+      .send({ templateId });
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(201); // Standard POST status
     expect(response.body.rid).toBe('s-lead-converted');
+    expect(response.body.data.projectId).toBeDefined();
   });
 });

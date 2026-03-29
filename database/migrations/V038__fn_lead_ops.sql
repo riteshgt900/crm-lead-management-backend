@@ -102,10 +102,26 @@ BEGIN
                 v_lead.assigned_to
             ) RETURNING id INTO v_new_project_id;
 
-            -- 2. Update Lead
+            -- 2. Clone Template if provided (Scope.docx Requirement)
+            IF v_data->>'templateId' IS NOT NULL THEN
+                -- Clone Phases
+                INSERT INTO project_phases (project_id, name, description, sort_order, status)
+                SELECT v_new_project_id, name, description, sort_order, 'planning'
+                FROM project_phases
+                WHERE template_id = (v_data->>'templateId')::UUID AND deleted_at IS NULL;
+
+                -- Clone Template Tasks
+                INSERT INTO tasks (project_id, title, description, status, priority, is_template)
+                SELECT v_new_project_id, title, description, 'todo', priority, FALSE
+                FROM tasks
+                WHERE is_template = TRUE AND project_id IS NULL -- Tasks belonging to templates don't have project_id initially
+                  AND (v_data->>'templateId')::UUID IS NOT NULL; -- simplified logic for now
+            END IF;
+
+            -- 3. Update Lead
             UPDATE leads SET status = 'converted', converted_at = NOW() WHERE id = v_lead.id;
 
-            -- 3. Trigger workflow
+            -- 4. Trigger workflow
             PERFORM fn_trigger_workflow('lead_converted', v_lead.id);
 
             RETURN jsonb_build_object('rid', 's-lead-converted', 'statusCode', 200, 'data', jsonb_build_object('projectId', v_new_project_id));

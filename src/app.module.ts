@@ -24,6 +24,7 @@ import { AuditModule } from './modules/audit/audit.module';
 import { IntegrationsModule } from './modules/integrations/integrations.module';
 import { ShareModule } from './modules/share/share.module';
 import { RbacModule } from './modules/rbac/rbac.module';
+import { RuntimeModule } from './modules/runtime/runtime.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { RbacModule } from './modules/rbac/rbac.module';
     IntegrationsModule,
     ShareModule,
     RbacModule,
+    RuntimeModule,
   ],
 })
 export class AppModule {}

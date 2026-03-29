@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, UseGuards } from '@nestjs/common';
 import { CommunicationsService } from './communications.service';
 import { CreateCommunicationDto } from './dto/communication.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
@@ -10,8 +10,8 @@ export class CommunicationsController {
   constructor(private communicationsService: CommunicationsService) {}
 
   @Get()
-  async findAll(@CurrentUser() user: any) {
-    return this.communicationsService.findAll(user);
+  async findAll(@Query() query: any, @CurrentUser() user: any) {
+    return this.communicationsService.findAll(query, user);
   }
 
   @Post()
