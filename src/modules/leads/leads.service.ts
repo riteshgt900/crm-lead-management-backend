@@ -78,8 +78,8 @@ export class LeadsService {
   }
 
   async convert(id: string, dto: ConvertLeadDto, user: any) {
-    return this.db.callDispatcher('fn_action_operations', {
-      actionKey: 'lead.convert',
+    return this.db.callDispatcher('fn_lead_operations', {
+      operation: 'convert_lead',
       data: { id, ...dto },
       requestedBy: user.id,
       role: user.role ?? user.roleName,

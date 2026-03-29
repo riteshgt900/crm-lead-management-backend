@@ -1,6 +1,6 @@
-# CRM for Lead Management — Backend API
+# CRM Platform — Backend API
 
-Production-grade NestJS and PostgreSQL backend for lead management, project coordination, and workflow automation.
+Production-grade NestJS and PostgreSQL backend for lead management, deal pipelines, project execution, and workflow automation.
 
 ## Quick Start
 
@@ -11,27 +11,29 @@ npm install
 # 2. Setup Environment
 # Copy .env.example to .env and update DATABASE_URL
 
-# 3. Database Migration & Seed
-node tools/migrate.js
-node tools/seed.js
+# 3. Database Migration
+# This will run all ~86 migrations idempotent.
+npm run db:migrate
 
 # 4. Start Development
 npm run start:dev
 ```
 
-## Documentation (The 9-File Structure)
+## Documentation (The 11-File Structure)
 
 This project follows an AI-optimized documentation structure located in the `docs/` folder:
 
 1.  **[00_AI_CONTEXT.md](docs/00_AI_CONTEXT.md)**: AI Memory Anchor — High-level context.
-2.  **[01_PROJECT_META.md](docs/01_PROJECT_META.md)**: Overview, Tech Stack, and Setup.
+2.  **[01_PROJECT_META.md](docs/01_PROJECT_META.md)**: Overview, Tech Stack, and Scope Audit.
 3.  **[02_ARCHITECTURE_STANDARDS.md](docs/02_ARCHITECTURE_STANDARDS.md)**: Non-negotiable laws and AI session workflow.
 4.  **[03_DATABASE_CORE.md](docs/03_DATABASE_CORE.md)**: Schema, SQL Injection prevention, and Dispatcher pattern.
 5.  **[04_API_AUTH_AND_UI_CONFIG.md](docs/04_API_AUTH_AND_UI_CONFIG.md)**: Auth Flow, API Contracts, UI settings logic, and Error Registry.
-6.  **[05_WORKFLOW_AUTOMATION.md](docs/05_WORKFLOW_AUTOMATION.md)**: Automation Engine and Default Rules.
+6.  **[05_WORKFLOW_AUTOMATION.md](docs/05_WORKFLOW_AUTOMATION.md)**: Automation Engine and Event Triggers.
 7.  **[06_TESTING_AND_SEED.md](docs/06_TESTING_AND_SEED.md)**: QA Strategy and Mandatory Seed Data.
 8.  **[07_OPERATIONS_LOG.md](docs/07_OPERATIONS_LOG.md)**: Project State, Phase Log, and Changelog.
 9.  **[08_AI_PROMPTS.md](docs/08_AI_PROMPTS.md)**: Master Prompt for skeleton generation and session sync templates.
+10. **[FE_INTEGRATION_GUIDE.md](docs/FE_INTEGRATION_GUIDE.md)**: Integration instructions for the Frontend team.
+11. **[frontend-api-contract.json](docs/frontend-api-contract.json)**: The machine-readable metadata driving UI generation.
 
 ## Agentic Development Protocol
 
@@ -49,10 +51,11 @@ This project is optimized for **Agentic AI development** (e.g., Gemini Antigravi
 - **Architecture**: 'Thin Nest, Thick PostgreSQL' (Business logic in SQL dispatchers)
 
 ## Enterprise Readiness
-- **Dynamic RBAC & UI Config**: Features dedicated Super Admin APIs (`/rbac`) to build custom roles and assign permissions on the fly, dynamically driving the frontend UI.
+- **Dynamic RBAC & UI Config**: Super Admin APIs (`/rbac`, `/runtime`) to build custom roles and dynamically drive the frontend UI schemas.
+- **Deal Pipeline**: Full Opportunity layer separating pre-qual leads from ongoing execution. 
 - **AI Observability**: Mandatory operation logging via `ai_operation_logs`.
-- **Performance**: In-memory RBAC caching and optimized SQL dispatching.
-- **Security & Reliability**: ACID-compliant PL/pgSQL transactions, Throttler rate limiting, strict Joi environment validation, soft delete constraints, and firm DTO bounds.
+- **Assignment & SLA Logic**: Round-robin pools and cron-based SLA breach detections.
+- **Security & Reliability**: ACID-compliant PL/pgSQL transactions, Throttler rate limiting, strict Joi environment validation.
 
 ---
 

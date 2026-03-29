@@ -1,70 +1,236 @@
-# Frontend (FE) Integration Guide - CRM Backend
-
-This guide is designed for your Frontend partner (and their AI assistant) to rapidly build a high-performance **Angular 18** application that integrates seamlessly with this CRM Backend.
+# Frontend (FE) Integration Guide — CRM Platform
 
 ## 1. STRATEGIC CONTEXT
-- **Architecture**: "Thin Nest, Thick PostgreSQL". All business logic and validations are handled by the backend SQL dispatchers.
-- **Auth Strategy**: **Cookie-based sessions** (HttpOnly). 
-    - **Crucial**: The Angular app MUST set `withCredentials: true` in all HttpClient requests.
-    - **No JWT**: Do not look for Bearer tokens; the browser handles the session cookie automatically.
 
-## 2. CORE INTEGRATION ASSETS
-Share the following assets with your FE partner:
+This guide is for the Frontend team and their AI assistant to build a production CRM frontend that integrates with this backend.
 
-### A. Swagger/OpenAPI Documentation
-- **Live UI**: [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
-- **Portable Contract**: [docs/openapi.json](file:///c:/Projects/crm-lead-management-backend/docs/openapi.json)
-
-> [!TIP]
-> **Sharing without Deployment**: You can share the [openapi.json](file:///c:/Projects/crm-lead-management-backend/docs/openapi.json) file directly with your partner. They can import this JSON into tools like **Postman**, **Insomnia**, or **Swagger Editor** to see the full documentation offline. 
-> 
-> Most importantly, they can use it with **OpenAPI Generator** to automatically build all Angular services and models without writing a single line of boilerplate.
-
-### B. The Response Envelope
-Every API response follows this exact structure:
-```json
-{
-  "rid": "s-lead-created",
-  "statusCode": 201,
-  "data": { ... },
-  "message": "Operation successful",
-  "meta": { "timestamp": "2026-03-28T..." }
-}
-```
-
-## 3. ANGULAR 18 IMPLEMENTATION TIPS
-1.  **Cookie Interceptor**: Create a global interceptor to enforce credentials.
-    ```typescript
-    export const authInterceptor: HttpInterceptorFn = (req, next) => {
-      const authReq = req.clone({ withCredentials: true });
-      return next(authReq);
-    };
-    ```
-2.  **Signals for State**: Use Angular 18 Signals to manage the `User Profile` and `Permissions` globally.
-3.  **Dynamic UI (RBAC)**: Upon login, call `/api/auth/profile`. Use the returned `permissions[]` (slugs like `leads:create`) to show/hide UI elements using an `NgIf` or a custom structural directive.
-
-## 4. MASTER PROMPT FOR FE AI PARTNER
-Copy and paste this prompt when starting the Frontend project:
-
-> "We are building a CRM Frontend in **Angular 18** using **Signals** and **TailwindCSS**. The backend is a NestJS project using **Cookie-based sessions** (HttpOnly). 
-> 
-> Here is our API Contract:
-> 1. Base URL: `http://localhost:3000/api`
-> 2. All requests must include `withCredentials: true`.
-> 3. Every response is wrapped in a `{ rid, statusCode, data, message }` envelope.
-> 
-> Please generate the **Auth Service** and **Leads Management Component** first. Use the provided API endpoint table for route details and DTO structures."
+### Key Architecture Facts
+- **Auth**: Cookie-based sessions (`crm_session`, HttpOnly). **No JWT. No Bearer tokens.**
+- **Credential Requirement**: EVERY HTTP request from the FE MUST include `withCredentials: true`.
+- **Business Flow**: `Lead → Opportunity → Project → Tasks` (not Lead → Project directly).
+- **Breaking Change**: `POST /leads/:id/convert` now returns `{ opportunityId, accountId, contactId }` — NOT a `projectId`.
 
 ---
 
-## 5. API ENDPOINT SUMMARY (Snapshot)
+## 2. INTEGRATION ASSETS
 
-| Module | Route | Method | Description |
-| :--- | :--- | :--- | :--- |
-| **Auth** | `/auth/login` | `POST` | Sets `crm_session` cookie. |
-| **Leads**| `/leads` | `POST` | Create a new lead. |
-| **Leads**| `/leads/:id/status` | `PATCH` | Update status (negotiating, won, etc). |
-| **Leads**| `/leads/:id/convert`| `POST` | Convert lead to Project (Requires linked Contact). |
-| **Tasks**| `/tasks` | `POST` | Create task for a Project. |
-| **Search**| `/search?q=...` | `GET` | Global unified search across Leads/Projects/Tasks. |
-| **RBAC**  | `/rbac/roles` | `GET` | (Admin Only) View and configure role permissions. |
+### A. Machine-Readable API Contract
+**→ Share [`docs/frontend-api-contract.json`](./frontend-api-contract.json) with the FE AI assistant.**
+
+This single JSON file contains:
+- All entity schemas with field-level metadata (label, type, required, filterable, etc.)
+- All dropdown/lookup values with colors for UI rendering
+- Complete API endpoint registry with request/response samples
+- Navigation menus and module structure
+- Permission slugs for RBAC-driven UI
+- Report definitions
+
+### B. Response Envelope (Every API Response)
+```json
+{
+  "rid":        "s-opportunity-won",
+  "statusCode": 200,
+  "data":       { "projectId": "uuid-..." },
+  "message":    "Opportunity closed as Won. Project created.",
+  "meta":       { "timestamp": "2026-03-29T..." }
+}
+```
+
+### C. Live Swagger Docs
+- **URL**: `http://localhost:3000/api/docs`
+- **Portable JSON**: `docs/openapi.json` (importable into Postman/Insomnia)
+
+---
+
+## 3. FRONTEND IMPLEMENTATION GUIDE
+
+### Cookie Interceptor (Angular)
+```typescript
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const authReq = req.clone({ withCredentials: true });
+  return next(authReq);
+};
+```
+
+### React / Next.js Equivalent
+```typescript
+// Use in every fetch call
+fetch('/api/leads', {
+  credentials: 'include',  // Critical: sends the crm_session cookie
+  headers: { 'Content-Type': 'application/json' }
+});
+```
+
+### RBAC-Driven UI Rendering
+1. On login, call `GET /auth/profile`.
+2. Response includes `permissions: ['leads:manage', 'projects:manage', 'opportunities:manage', ...]`.
+3. Use this array to show/hide sidebar items, action buttons, form fields.
+4. Example: Only render "Create Opportunity" button if `permissions.includes('opportunities:manage')`.
+
+---
+
+## 4. KEY UI FLOWS
+
+### 4.1 Lead → Opportunity Conversion Flow
+```
+1. User opens Lead detail page
+2. User clicks "Convert Lead" button
+3. FE POSTs to: POST /leads/:id/convert
+   Body: { accountName, contactEmail, opportunityTitle, amount, expectedCloseDate }
+4. Backend returns: { opportunityId, accountId, contactId }
+5. FE redirects to: /opportunities/:opportunityId
+```
+
+### 4.2 Opportunity → Project Flow
+```
+1. User opens Opportunity detail page
+2. User clicks "Mark as Won" button
+3. FE POSTs to: POST /opportunities/:id/win
+   Body: { projectTitle, projectDescription, templateId, projectManagerId }
+4. Backend returns: { projectId }
+5. FE redirects to: /projects/:projectId
+```
+
+### 4.3 Activity Timeline (Universal)
+```
+The same component can render the timeline for ANY entity:
+GET /activities?entityType=lead&entityId=<uuid>
+GET /activities?entityType=opportunity&entityId=<uuid>
+GET /activities?entityType=project&entityId=<uuid>
+
+Each activity has: { type: 'call'|'meeting'|'email'|'note'|'system_event', title, description, performedByName, activityDate }
+```
+
+### 4.4 Notes Panel (Universal)
+```
+Same pattern as activities — works for any entity:
+GET  /notes?entityType=project&entityId=<uuid>
+POST /notes  → { entityType, entityId, content, isPinned }
+POST /notes/:id/pin  → toggle pin
+```
+
+### 4.5 Assignment Pool Picker
+```
+1. Admin creates pool: POST /assignments/pools → { name, entityType: 'lead', ruleType: 'round_robin' }
+2. Admin adds members: POST /assignments/pools/members/add → { poolId, userId }
+3. Pool auto-assigns leads on creation (no FE action needed)
+4. Agents can see unassigned leads: GET /assignments/unassigned
+5. Agent can claim: POST /leads/:id/claim
+```
+
+---
+
+## 5. ENTITY DETAIL PAGE STRUCTURE
+
+Every detail page (Lead, Opportunity, Project, Task) should have these standard tabs:
+
+| Tab | Data Source | Description |
+|-----|-------------|-------------|
+| **Overview** | Entity GET endpoint | Core fields, status, key dates |
+| **Activities** | `GET /activities?entityType=X&entityId=Y` | Timeline of calls, meetings, emails, events |
+| **Notes** | `GET /notes?entityType=X&entityId=Y` | Pinnable note panel |
+| **Documents** | `GET /documents?entityType=X&entityId=Y` | File attachments |
+| **Assignment History** | `GET /assignments/history?entityType=X&entityId=Y` | Who was it assigned to and when |
+| **Related** | Entity-specific (e.g., Opportunity → Projects, Lead → Opportunity) | Cross-entity links |
+
+---
+
+## 6. DROPDOWN / LOOKUP SYSTEM
+
+All dropdowns are driven by `lookups` in `frontend-api-contract.json`. Do NOT hardcode values.
+
+```typescript
+// Example: render Stage dropdown for Opportunity
+const opportunityStages = contract.lookups.opportunity_stage;
+// Returns: [{ key: 'prospecting', label: 'Prospecting', color: '#2563eb' }, ...]
+
+// Use the color for Kanban column headers, status badges, etc.
+```
+
+**New Lookups Added:**
+- `opportunity_stage`: `prospecting`, `proposal`, `negotiation`, `won`, `lost`
+- `activity_type`: `call`, `meeting`, `email`, `task`, `note`, `system_event`
+- `assignment_rule`: `round_robin`, `pool`, `manual`
+
+---
+
+## 7. COMPLETE SIDEBAR NAVIGATION STRUCTURE
+
+```json
+[
+  { "label": "Dashboard",      "route": "/dashboard",       "permission": "dashboard:view",      "icon": "dashboard" },
+  { "label": "Leads",          "route": "/leads",            "permission": "leads:manage",         "icon": "funnel" },
+  { "label": "Opportunities",  "route": "/opportunities",    "permission": "opportunities:manage", "icon": "briefcase" },
+  { "label": "Projects",       "route": "/projects",         "permission": "projects:manage",      "icon": "folder" },
+  { "label": "Tasks",          "route": "/tasks",            "permission": "tasks:manage",         "icon": "check-square" },
+  { "label": "Contacts",       "route": "/contacts",         "permission": "contacts:manage",      "icon": "users" },
+  { "label": "Accounts",       "route": "/accounts",         "permission": "contacts:manage",      "icon": "building" },
+  { "label": "Activities",     "route": "/activities",       "permission": "activities:manage",    "icon": "activity" },
+  { "label": "Documents",      "route": "/documents",        "permission": "documents:manage",     "icon": "file" },
+  { "label": "Communications", "route": "/communications",   "permission": "communications:manage","icon": "message" },
+  { "label": "Quotations",     "route": "/quotations",       "permission": "quotations:manage",    "icon": "receipt" },
+  { "label": "Expenses",       "route": "/expenses",         "permission": "expenses:manage",      "icon": "dollar" },
+  { "label": "Reports",        "route": "/reports",          "permission": "reports:view",         "icon": "bar-chart" },
+  { "label": "Settings",       "route": "/settings",         "permission": "settings:manage",      "icon": "settings",
+    "children": [
+      { "label": "Users & Roles",     "route": "/settings/rbac" },
+      { "label": "Assignment Pools",  "route": "/settings/assignments" },
+      { "label": "SLA Policies",      "route": "/settings/slas" },
+      { "label": "Workflows",         "route": "/settings/workflows" },
+      { "label": "Lookup Values",     "route": "/settings/lookups" }
+    ]
+  }
+]
+```
+
+---
+
+## 8. AI PROMPT TEMPLATE FOR FE TEAM
+
+Copy-paste this to your AI assistant when starting the frontend project:
+
+```
+We are building a CRM frontend. The backend is NestJS with PostgreSQL and cookie-based sessions (HttpOnly).
+
+CRITICAL RULES:
+1. All HTTP requests MUST include: withCredentials: true
+2. Auth is sessionCookie (crm_session), NOT JWT
+3. Business Flow: Lead → Opportunity → Project (NOT Lead → Project directly)
+4. Every API response is: { rid, statusCode, data, message, meta }
+
+API Base URL: http://localhost:3000/api
+
+I'm attaching frontend-api-contract.json which contains:
+- All entities with field schemas (labels, types, validations, lookup keys)
+- All dropdown values with colors (use for badges, Kanban columns, status chips)
+- Complete endpoint registry with request/response samples
+- Navigation structure with permission guards
+- Report definitions
+
+Please build the following modules first in this order:
+1. Auth Service (login/logout/profile + RBAC permissions guard)
+2. Lead List & Detail pages (with Activity timeline + Notes panel)
+3. Opportunity Pipeline (Kanban by stage with drag-to-update-stage)
+4. Project Detail (tabs: Overview, Tasks, Documents, Activities, Notes)
+5. Settings → Assignment Pools
+6. Settings → SLA Policies
+```
+
+---
+
+## 9. API ENDPOINT QUICK REFERENCE
+
+| Module | Create | List | Detail | Action |
+|--------|--------|------|--------|--------|
+| Auth | `POST /auth/login` | — | `GET /auth/profile` | `POST /auth/logout` |
+| Leads | `POST /leads` | `GET /leads` | `GET /leads/:id` | `POST /leads/:id/convert` |
+| Opportunities | `POST /opportunities` | `GET /opportunities` | `POST /opportunities/get` | `POST /opportunities/:id/win` |
+| Projects | `POST /projects` | `GET /projects` | `GET /projects/:id` | `POST /projects/:id/status` |
+| Tasks | `POST /tasks` | `GET /tasks` | `GET /tasks/:id` | `PATCH /tasks/:id/status` |
+| Activities | `POST /activities` | `GET /activities` | — | `POST /activities/log-call` |
+| Notes | `POST /notes` | `GET /notes` | `GET /notes/:id` | `POST /notes/:id/pin` |
+| Assignments | `POST /assignments/pools` | `GET /assignments/pools` | — | `POST /assignments/pools/members/add` |
+| SLAs | `POST /slas/policies` | `GET /slas/policies` | — | `POST /slas/check-breaches` |
+| Documents | `POST /documents/upload` | `GET /documents` | `GET /documents/:id` | `POST /documents/:id/approve` |
+| Reports | — | `GET /reports` | `GET /reports/:key` | `GET /reports/:key/csv` |
+| RBAC | `POST /rbac/roles` | `GET /rbac/roles` | `GET /rbac/roles/:id` | `POST /rbac/roles/:id/permissions` |

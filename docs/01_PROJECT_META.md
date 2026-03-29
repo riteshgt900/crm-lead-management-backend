@@ -1,39 +1,35 @@
 # 01_PROJECT_META.md
-# CRM for Lead Management — Project Overview & Setup
+# CRM + Project Management Platform — Project Overview & Setup
 
 ## 1. OVERVIEW
-Production-grade CRM backend for lead management, project coordination, task tracking, stakeholder communication, and workflow automation.
+Production-grade CRM + Deal Pipeline + Project Execution backend. The system manages the complete business lifecycle:
+
+```
+Lead → Opportunity (Deal) → Project → Tasks → Execution → Monitoring → Reporting
+```
+
+Supports lead capturing from multiple sources, deal pipeline management, project and task execution, stakeholder communication, document management, workflow automation, SLA tracking, real-time dashboards, RBAC, and full audit traceability.
 
 ### Tech Stack
-| Layer      | Technology                                | Version        |
-|------------|-------------------------------------------|----------------|
-| Runtime    | Node.js                                   | 20.20.1 (LTS)  |
-| Framework  | NestJS                                    | 10.4.5         |
-| Language   | TypeScript                                | 5.5.3 (strict) |
-| Database   | PostgreSQL                                | 17             |
-| Auth       | Cookie-based sessions                     | HttpOnly       |
-| Validation | class-validator                           | 0.14.1         |
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| Runtime | Node.js | 20.20.1 (LTS) |
+| Framework | NestJS | 10.4.5 |
+| Language | TypeScript | 5.5.3 (strict) |
+| Database | PostgreSQL | 17 |
+| Auth | Cookie-based sessions | HttpOnly |
+| Validation | class-validator | 0.14.1 |
+| API Docs | Swagger / OpenAPI | 3.0 |
+| Scheduling | @nestjs/schedule | 4.1.0 |
 
-`HTTP Request -> NestJS Controller (Validate) -> NestJS Service (Dispatch) -> PostgreSQL Function (Logic) -> JSON Response`
+`HTTP Request → SessionGuard → Controller (DTO Validate) → Service → DatabaseService → PG Dispatcher → ResponseInterceptor`
 
 ### Global Standards (Anti-Hallucination)
-- **Filenames**: Always `kebab-case` for NestJS files (e.g., `user.controller.ts`) and `snake_case` for SQL (e.g., `fn_user_ops.sql`).
-- **Primary Keys**: Always `UUID` (v4/v7). Never `SERIAL/INT`.
-- **Time/Dates**: Always `TIMESTAMPTZ`. Storage always in `UTC`.
-- **Error Format**: Always use the error envelope defined in `04_API_AUTH_AND_RBAC.md`.
-
----
-
-## 1.5 DOCUMENTATION INDEX (The 9-File Structure)
-1. **[00_AI_CONTEXT.md](00_AI_CONTEXT.md)**: AI Memory Anchor.
-2. **[01_PROJECT_META.md](01_PROJECT_META.md)**: Project Overview & Setup.
-3. **[02_ARCHITECTURE_STANDARDS.md](02_ARCHITECTURE_STANDARDS.md)**: Development Laws.
-4. **[03_DATABASE_CORE.md](03_DATABASE_CORE.md)**: Schema & SQL Dispatchers.
-5. **[04_API_AUTH_AND_UI_CONFIG.md](04_API_AUTH_AND_UI_CONFIG.md)**: Auth & API Contracts.
-6. **[05_WORKFLOW_AUTOMATION.md](05_WORKFLOW_AUTOMATION.md)**: Automation Engine.
-7. **[06_TESTING_AND_SEED.md](06_TESTING_AND_SEED.md)**: QA & Seed Data.
-8. **[07_OPERATIONS_LOG.md](07_OPERATIONS_LOG.md)**: Project Health & Logs.
-9. **[08_AI_PROMPTS.md](08_AI_PROMPTS.md)**: AI Instruction Sets.
+- **Filenames**: Always `kebab-case` for NestJS files, `snake_case` for SQL.
+- **Primary Keys**: Always `UUID`. Never `SERIAL/INT`.
+- **Time/Dates**: Always `TIMESTAMPTZ`, stored in UTC.
+- **Error Format**: Always use `fn_error_envelope(rid, statusCode, message)`.
+- **Soft Deletes**: `deleted_at = NOW()`. Never `DELETE FROM`.
 
 ---
 
@@ -43,20 +39,21 @@ Production-grade CRM backend for lead management, project coordination, task tra
 ```json
 {
   "dependencies": {
-    "@nestjs/common":          "10.4.5",
-    "@nestjs/core":            "10.4.5",
-    "@nestjs/platform-express":"10.4.5",
-    "@nestjs/config":          "3.2.3",
-    "@nestjs/schedule":        "4.1.0",
-    "pg":                      "8.12.0",
-    "bcrypt":                  "5.1.1",
-    "cookie-parser":           "1.4.6",
-    "class-validator":         "0.14.1",
-    "class-transformer":       "0.5.1",
-    "helmet":                  "7.1.0",
-    "multer":                  "1.4.5-lts.1",
-    "@nestjs/throttler":       "6.2.1",
-    "joi":                     "17.13.3"
+    "@nestjs/common":           "10.4.5",
+    "@nestjs/core":             "10.4.5",
+    "@nestjs/platform-express": "10.4.5",
+    "@nestjs/config":           "3.2.3",
+    "@nestjs/schedule":         "4.1.0",
+    "@nestjs/swagger":          "7.x",
+    "@nestjs/throttler":        "6.2.1",
+    "pg":                       "8.12.0",
+    "bcrypt":                   "5.1.1",
+    "cookie-parser":            "1.4.6",
+    "class-validator":          "0.14.1",
+    "class-transformer":        "0.5.1",
+    "helmet":                   "7.1.0",
+    "multer":                   "1.4.5-lts.1",
+    "joi":                      "17.13.3"
   }
 }
 ```
@@ -68,60 +65,76 @@ PORT=3000
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/crm_core_local?search_path=crm,public
 SESSION_COOKIE_NAME=crm_session
 SESSION_MAX_AGE_MS=604800000
-SESSION_SECRET=change_this
+SESSION_SECRET=change_this_in_production
 UPLOAD_DIR=./uploads
-
-# Notifications (SMTP/SendGrid)
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USER=notifications@crm.local
 MAIL_PASS=change_this
 MAIL_FROM=notifications@crm.local
+THROTTLE_TTL=60000
+THROTTLE_LIMIT=100
 ```
 
 ### Setup Steps
-1. **Schema**: Run `CREATE SCHEMA IF NOT EXISTS crm;` (Already created by User).
-2. **Extensions**: Run `CREATE EXTENSION IF NOT EXISTS "pgcrypto", "uuid-ossp", "pg_trgm";` (Usually in `public` or `crm`).
-3. **Install**: `npm install`
-4. **Migrate**: `npm run db:migrate` (Targets `crm` schema)
-5. **Seed**: `npm run db:seed`
-6. **Start**: `npm run start:dev`
+1. `CREATE SCHEMA IF NOT EXISTS crm;`
+2. `CREATE EXTENSION IF NOT EXISTS "pgcrypto", "uuid-ossp", "pg_trgm";`
+3. `npm install`
+4. `npm run db:migrate` (runs all V000–V085 migrations via `tools/migrate.js`)
+5. `npm run start:dev`
 
 ---
 
-## 3. SCOPE AUDIT & COVERAGE
+## 3. SCOPE AUDIT & MODULE COVERAGE
 
 ### Module Status
 | Module | Coverage | Status |
-| :--- | :--- | :--- |
-| **3.1 Lead Management** | Intake, Pipeline, Conversion | [DONE] |
-| **3.2 Project Management**| Phases, Milestones, Templates | [DONE] |
-| **3.3 Task Management** | Kanban, Escalations, Templates| [DONE] |
-| **3.4 Stakeholders** | Categories, Project Feeds | [DONE] |
-| **3.5 Documents** | Versioning, Secure Uploads | [DONE] (V065) |
-| **3.6 Automation** | Lead -> Project blueprints | [DONE] (V066) |
-| **3.7 RBAC & Settings** | Dynamic permissions, Roles | [DONE] |
-| **3.8 Reporting** | CSV Export, Weekly Summary | [DONE] (V049) |
-| **3.9 Audit Logs** | Chronological History Feed  | [DONE] (V034) |
+|--------|---------|--------|
+| **4.1 Lead Management** | Intake, Pipeline, Round-Robin Pool, Manual/Claim | ✅ DONE |
+| **4.2 Opportunity Management** | Prospecting → Negotiation → Won/Lost, Auto-creates Project | ✅ DONE |
+| **4.3 Project Management** | Phases, Milestones, Templates, Health, Stakeholders | ✅ DONE |
+| **4.4 Task Management** | Kanban, Dependencies, Time Tracking, Escalations | ✅ DONE |
+| **4.5 Contact & Stakeholder** | Multi-category, Addresses, Account Links | ✅ DONE |
+| **4.6 Account Management** | Company, Individual, Partner types | ✅ DONE |
+| **4.7 Document Management** | Versioning, Approval Workflow, Secure Sharing | ✅ DONE |
+| **4.8 Activity & Timeline** | Unified feed: Calls, Meetings, Emails, Notes, Events | ✅ DONE |
+| **4.9 Notes System** | Entity-agnostic notes with pin, timeline mirror | ✅ DONE |
+| **4.10 Communications** | Full log with backward compat from Activities | ✅ DONE |
+| **4.11 Assignment System** | Round-robin pools, pool-pick, manual, history | ✅ DONE |
+| **4.12 SLA & Escalation** | Policy CRUD, breach detection (cron), escalation logs | ✅ DONE |
+| **4.13 Workflow Automation** | Event triggers, configurable rules, workflow executions | ✅ DONE |
+| **4.14 Reporting & Dashboards** | Pipeline, Deal, Project Health, SLA, Activity, CSV Export | ✅ DONE |
+| **4.15 RBAC** | Dynamic permissions, role-based record access | ✅ DONE |
+| **4.16 Audit Trail** | Full change history, old/new values, triggers on all tables | ✅ DONE |
+| **4.17 Quotations** | Quotation lifecycle with line items and tax | ✅ DONE |
+| **4.18 Expenses** | Project expenses with receipts and categories | ✅ DONE |
+| **4.19 Search** | Global full-text search via pg_trgm GIN indexes | ✅ DONE |
 
-### Totals
-- **Tables**: 34 Core + Mapping Tables
-- **Endpoints**: 140+
-- **Migrations**: 65 (Applied & Verified)
-- **Roles**: Super Admin, Admin, PM, Team, External (Architect/PMC/Vendor)
+### System Totals
+- **Tables**: 42 (including 7 new tables added in V078)
+- **DB Dispatcher Functions**: 20+
+- **Migrations**: 86 (V000–V085)
+- **NestJS Modules**: 27
+- **REST Endpoints**: 180+
+- **Roles**: Admin, Manager, Team Member, External (Architect/PMC/Vendor)
 
 ---
 
 ## 4. SECURITY BASELINES
-- **File Uploads (Multer)**: Strictly validate in NestJS.
-  - **Max Size**: 25MB per file.
-  - **Allowed MIME**: `application/pdf`, `image/jpeg`, `image/png`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`.
-  - **Storage**: `./uploads` directory. Never serve statically; always pipe through an authenticated NestJS stream router.
+- **File Uploads (Multer)**: Max 25MB, allowed MIME: PDF, JPEG, PNG, DOC, DOCX.
+- **JSON Body Limit**: 1MB (enforced in `main.ts`).
+- **Rate Limiting**: 100 req/min global, 5 req/min on `/auth/*`.
+- **Session**: HttpOnly, SameSite: Lax, Secure in production.
+- **SQL**: All dispatcher calls use parameterized JSONB payloads. No string interpolation.
+- **CORS**: Credentials + origin whitelist enforced.
 
 ---
 
 ## 5. DEFERRED TO V2
 - Two-factor authentication (2FA)
-- Full data export (ZIP/CSV)
-- Mobile App / Client Portal
-- Invoice generation from quotations
+- Client-facing portal / mobile app
+- Invoice PDF generation from quotations
+- Full ZIP data export
+- Email provider integrations (Gmail / Outlook OAuth)
+- Messaging integrations (Slack / WhatsApp)
+- Cloud storage swap (S3Provider)

@@ -1,11 +1,11 @@
 # 08_AI_PROMPTS.md
-# CRM for Lead Management — AI Agent Instruction Set
+# CRM Platform — AI Agent Instruction Set
 
 ## 1. MASTER PROMPT (Skeleton Generation)
 **Run once.** Use this prompt to bootstrap the entire NestJS infrastructure and database migration set.
 
 # MASTER_PROMPT.md
-# CRM for Lead Management
+# CRM Platform
 # One-Time NestJS Skeleton Generation Prompt
 
 ## PURPOSE
@@ -319,7 +319,7 @@ Use docs/08_AI_PROMPTS.md at the end of every session.
 **Run at start of every session.** It forces the agent to read 07_OPERATIONS_LOG.md to orient itself and enforces the SQL injection/Security Definer rules.
 
 # BACKEND_DEV_PROMPT.md
-# CRM for Lead Management
+# CRM Platform
 # Backend Developer — Session Prompt
 
 ## HOW TO USE
@@ -332,7 +332,7 @@ Paste as your FIRST message at the start of every Cursor or Windsurf session.
 ===START===
 
 You are a Senior NestJS and PostgreSQL Backend Engineer.
-You are working on the CRM Lead Management backend API.
+You are working on the CRM Platform backend API.
 
 This is a BACKEND ONLY project. No frontend. No UI code.
 
@@ -484,7 +484,7 @@ curl -b cookies.txt http://localhost:3000/api/leads
 **Run as the last message of every session.** It commands the agent to detect changes and update the 07_OPERATIONS_LOG.md.
 
 # END_OF_SESSION_PROMPT.md
-# CRM for Lead Management
+# CRM Platform
 # Auto-Sync Prompt — Paste at END of every session
 
 ## HOW TO USE
@@ -501,7 +501,7 @@ You do nothing manually.
 
 ===START===
 
-You are finishing a development session on the CRM Lead Management backend.
+You are finishing a development session on the CRM Platform backend.
 Your ONLY job right now is to scan what was built and update the 3 sync files.
 Do NOT write any application code. Do NOT run any commands except git.
 

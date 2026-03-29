@@ -1,5 +1,5 @@
 # 06_TESTING_AND_SEED.md
-# CRM for Lead Management — Quality Assurance & Seed Data
+# CRM Platform — Quality Assurance & Seed Data
 
 ## 1. TESTING STRATEGY
 
@@ -15,10 +15,10 @@ END $$;
 ```
 
 ### NestJS (Jest/E2E)
-- **Status**: 100% Passed (15/15 Tests).
-- **Coverage**: Auth, Leads (Lifecycle), Projects/Tasks (Functional), Financials, Search, Dashboard.
+- **Status**: 100% Passed (18/18 Tests).
+- **Coverage**: Auth, Leads (Lifecycle), Opportunities, Projects/Tasks (Functional), Financials, Search, Dashboard.
 - **Protocol**: Standard E2E suite using `createTestApp` and `Supertest`.
-- **Note**: Lead-to-Project conversion now requires a pre-created Contact as a professional guardrail.
+- **Note**: Lead-to-Opportunity conversion requires deduplication logic (creates or links Contact/Account based on matching data). Opportunity close_won auto-creates Project.
 
 ### AI Session Verification
 1. Login -> Verify Cookie.
@@ -31,8 +31,8 @@ END $$;
 ## 2. SEED DATA (CORE)
 These records are **mandatory** for the system to function. All seed scripts MUST use `ON CONFLICT DO NOTHING` or `UPDATE` logic to remain idempotent.
 
-- **Permissions**: `dashboard`, `leads`, `projects`, `kanban`, `tasks`, `contacts`, `documents`, `quotations`, `expenses`, `reports`, `settings`.
-- **Roles**: Super Admin (p11), Admin (p10), PM (p10), Team (p7), External (p3).
+- **Permissions**: `dashboard`, `leads`, `opportunities`, `projects`, `kanban`, `tasks`, `contacts`, `documents`, `quotations`, `expenses`, `reports`, `settings`, `activities`, `notes`, `assignments`, `slas`.
+- **Roles**: Super Admin, Admin, PM, Team, External.
 - **Default Admin**: `admin@crm.local` / `Admin@123`.
 
 ---
@@ -41,5 +41,6 @@ These records are **mandatory** for the system to function. All seed scripts MUS
 Sample records for volume and UI testing:
 - **Contacts**: Architects, Pmcs, Vendors.
 - **Leads**: 3BHK Interior, Office Fit-out.
-- **Project Template**: "Standard Interior Design" (4 Phases, 14 Tasks).
-- **Workflows**: Converted lead -> Auto-project.
+- **Projects**: Standard templates and milestones.
+- **SLA Policies**: High Priority 4hr SLA.
+- **Workflow Rules**: Auto pool assignment, Lead Converted -> Opportunity notification.

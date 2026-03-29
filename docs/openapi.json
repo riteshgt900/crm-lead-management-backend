@@ -1624,6 +1624,896 @@
           "Runtime"
         ]
       }
+    },
+    "/api/opportunities": {
+      "get": {
+        "operationId": "OpportunitiesController_findAll",
+        "summary": "List all opportunities",
+        "description": "Returns paginated list of deals in the pipeline.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Opportunities listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      },
+      "post": {
+        "operationId": "OpportunitiesController_create",
+        "summary": "Create new opportunity",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Opportunity created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/opportunities/get": {
+      "post": {
+        "operationId": "OpportunitiesController_findOne",
+        "summary": "Get opportunity by ID",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Opportunity details with related data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Opportunity not found"
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/opportunities/{id}": {
+      "patch": {
+        "operationId": "OpportunitiesController_update",
+        "summary": "Update opportunity details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      },
+      "delete": {
+        "operationId": "OpportunitiesController_remove",
+        "summary": "Soft-delete opportunity",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/opportunities/{id}/stage": {
+      "post": {
+        "operationId": "OpportunitiesController_updateStage",
+        "summary": "Move opportunity to a new pipeline stage",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stage updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cannot change stage of closed opportunity"
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/opportunities/{id}/win": {
+      "post": {
+        "operationId": "OpportunitiesController_closeWon",
+        "summary": "Mark opportunity as Won and auto-create a Project",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity won, project created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/opportunities/{id}/lose": {
+      "post": {
+        "operationId": "OpportunitiesController_closeLost",
+        "summary": "Mark opportunity as Lost",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity closed as lost",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/opportunities/{id}/assign": {
+      "post": {
+        "operationId": "OpportunitiesController_assign",
+        "summary": "Re-assign opportunity to another user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity reassigned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Opportunities"
+        ]
+      }
+    },
+    "/api/activities": {
+      "get": {
+        "operationId": "ActivitiesController_list",
+        "summary": "List activities for an entity",
+        "description": "Returns unified activity timeline for the given entity.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Activities listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Activities"
+        ]
+      },
+      "post": {
+        "operationId": "ActivitiesController_create",
+        "summary": "Create a generic activity entry",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Activity created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Activities"
+        ]
+      }
+    },
+    "/api/activities/timeline": {
+      "get": {
+        "operationId": "ActivitiesController_globalTimeline",
+        "summary": "Global activity timeline",
+        "description": "Returns recent activity across all entities for the current user.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Timeline listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Activities"
+        ]
+      }
+    },
+    "/api/activities/log-call": {
+      "post": {
+        "operationId": "ActivitiesController_logCall",
+        "summary": "Log a call activity",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Call logged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Activities"
+        ]
+      }
+    },
+    "/api/activities/log-meeting": {
+      "post": {
+        "operationId": "ActivitiesController_logMeeting",
+        "summary": "Log a meeting activity",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Meeting logged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Activities"
+        ]
+      }
+    },
+    "/api/activities/log-email": {
+      "post": {
+        "operationId": "ActivitiesController_logEmail",
+        "summary": "Log an email activity",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Email logged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Activities"
+        ]
+      }
+    },
+    "/api/notes": {
+      "get": {
+        "operationId": "NotesController_list",
+        "summary": "List notes for an entity",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notes"
+        ]
+      },
+      "post": {
+        "operationId": "NotesController_create",
+        "summary": "Create note on any entity",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notes"
+        ]
+      }
+    },
+    "/api/notes/{id}": {
+      "get": {
+        "operationId": "NotesController_findOne",
+        "summary": "Get note by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notes"
+        ]
+      },
+      "patch": {
+        "operationId": "NotesController_update",
+        "summary": "Update note content or pin status",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notes"
+        ]
+      },
+      "delete": {
+        "operationId": "NotesController_remove",
+        "summary": "Soft-delete a note",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notes"
+        ]
+      }
+    },
+    "/api/notes/{id}/pin": {
+      "post": {
+        "operationId": "NotesController_pin",
+        "summary": "Toggle pin status of a note",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notes"
+        ]
+      }
+    },
+    "/api/assignments/pools": {
+      "get": {
+        "operationId": "AssignmentsController_listPools",
+        "summary": "List assignment pools",
+        "description": "Returns all active pools with member details.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      },
+      "post": {
+        "operationId": "AssignmentsController_createPool",
+        "summary": "Create a new assignment pool",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/pools/{id}": {
+      "delete": {
+        "operationId": "AssignmentsController_deletePool",
+        "summary": "Delete an assignment pool",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/pools/members/add": {
+      "post": {
+        "operationId": "AssignmentsController_addMember",
+        "summary": "Add a user to an assignment pool",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/pools/members/remove": {
+      "post": {
+        "operationId": "AssignmentsController_removeMember",
+        "summary": "Remove a user from an assignment pool",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/history": {
+      "get": {
+        "operationId": "AssignmentsController_listHistory",
+        "summary": "Get assignment history for an entity",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/unassigned": {
+      "get": {
+        "operationId": "AssignmentsController_getUnassignedLeads",
+        "summary": "Get unassigned leads available for pool pick",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/slas/policies": {
+      "get": {
+        "operationId": "SlasController_listPolicies",
+        "summary": "List SLA policies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      },
+      "post": {
+        "operationId": "SlasController_createPolicy",
+        "summary": "Create SLA policy",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      }
+    },
+    "/api/slas/policies/{id}": {
+      "patch": {
+        "operationId": "SlasController_updatePolicy",
+        "summary": "Update SLA policy",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      },
+      "delete": {
+        "operationId": "SlasController_deletePolicy",
+        "summary": "Delete SLA policy",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      }
+    },
+    "/api/slas/check-breaches": {
+      "post": {
+        "operationId": "SlasController_checkBreaches",
+        "summary": "Trigger SLA breach check (admin/cron)",
+        "description": "Evaluates all entities against active SLA policies and creates escalation logs.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      }
+    },
+    "/api/slas/escalations": {
+      "get": {
+        "operationId": "SlasController_listEscalations",
+        "summary": "List escalation logs",
+        "description": "Returns open or resolved escalations filtered by entity type or status.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      }
+    },
+    "/api/slas/escalations/{id}/resolve": {
+      "post": {
+        "operationId": "SlasController_resolveEscalation",
+        "summary": "Resolve an escalation",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SLAs"
+        ]
+      }
     }
   },
   "info": {

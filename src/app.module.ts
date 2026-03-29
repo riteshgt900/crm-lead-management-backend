@@ -25,6 +25,11 @@ import { IntegrationsModule } from './modules/integrations/integrations.module';
 import { ShareModule } from './modules/share/share.module';
 import { RbacModule } from './modules/rbac/rbac.module';
 import { RuntimeModule } from './modules/runtime/runtime.module';
+import { OpportunitiesModule } from './modules/opportunities/opportunities.module';
+import { ActivitiesModule } from './modules/activities/activities.module';
+import { NotesModule } from './modules/notes/notes.module';
+import { AssignmentsModule } from './modules/assignments/assignments.module';
+import { SlasModule } from './modules/slas/slas.module';
 
 @Module({
   imports: [
@@ -61,6 +66,11 @@ import { RuntimeModule } from './modules/runtime/runtime.module';
     ShareModule,
     RbacModule,
     RuntimeModule,
+    OpportunitiesModule,
+    ActivitiesModule,
+    NotesModule,
+    AssignmentsModule,
+    SlasModule,
   ],
 })
 export class AppModule {}
