@@ -4,6 +4,7 @@ import {
   IsBooleanString,
   IsIn,
   IsInt,
+  IsNotEmpty,
   IsOptional,
   IsString,
   IsUUID,
@@ -55,3 +56,25 @@ export class UpdateRolePermissionsDto {
   @IsBooleanString()
   replace?: string;
 }
+
+export class CreateRoleDto {
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
+
+  @IsString()
+  @IsOptional()
+  description?: string;
+}
+
+export class UpdateRoleDto {
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  name?: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+}
+

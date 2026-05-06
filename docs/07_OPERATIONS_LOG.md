@@ -2,8 +2,8 @@
 # CRM Platform — Project Health & Lifecycle Log
 
 ## 1. QUICK SYSTEM STATE
-- **Last Sync**: 2026-03-29 (CRM Enhancement Complete)
-- **Current Phase**: Phase 17 (CRM Pipeline Architecture — COMPLETE)
+- **Last Sync**: 2026-03-29 (Strict RBAC Pipeline + Client Portal API)
+- **Current Phase**: Phase 18 (Client Portal & RBAC — COMPLETE)
 - **Next Milestone**: Production Deployment
 - **Auth Status**: ✅ Functional (Cookie-based + SQL Dispatcher)
 - **DB Migrations**: 86 Applied (V000–V085), Next: V086
@@ -34,6 +34,7 @@
 | Phase 15 | System Recovery (Migration Tracker, Trigger Activation, 18/18 Pass) | ✅ DONE |
 | Phase 16 | Runtime Foundation (Accounts, UI Config, API Registry, Lookup System) | ✅ DONE |
 | Phase 17 | CRM Enhancement (Opportunity Layer, Activities, Notes, SLAs, Assignments) | ✅ DONE |
+| Phase 18 | Strict RBAC Pipeline + Client Portal API (V2 Integration) | ✅ DONE |
 
 ---
 
@@ -95,10 +96,11 @@
 - [x] Swagger & Documentation (Phases 11–12)
 - [x] Full Scope Compliance (Phases 13–15)
 - [x] Runtime Foundation & UI Config System (Phase 16)
-- [x] **CRM Enhancement: Deal Pipeline + Activities + Notes + SLAs + Assignment Pools (Phase 17)**
+- [x] CRM Enhancement: Deal Pipeline + Activities + Notes + SLAs + Assignment Pools (Phase 17)
+- [x] Strict RBAC Pipeline + Client Portal API (Phase 18)
 - [ ] Production Deployment
 - [ ] 2FA Implementation (V2)
-- [ ] Client Portal / Mobile App (V2)
+- [x] Client Portal API (V2)
 - [ ] S3 Storage Provider Swap (V2)
 
 ---
@@ -115,3 +117,5 @@
 | 2026-03-29 | Round-robin pool assignment at lead create | Even workload distribution without manual overhead |
 | 2026-03-29 | Activities as unified timeline (not just communications) | Single source for all entity interactions, FE simplicity |
 | 2026-03-29 | SLA breach check as callable function + cron | Admin can trigger manually, cron runs automatically |
+| 2026-03-29 | Portal isolation & Dedicated Guest Auth | Prevent external users from consuming full internal licenses and accessing core system endpoints |
+| 2026-03-29 | Strict RBAC checking explicitly on API levels | Ensures only authorized super_admins or specific roles can access/modify entities |

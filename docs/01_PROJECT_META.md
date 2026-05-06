@@ -104,7 +104,7 @@ THROTTLE_LIMIT=100
 | **4.12 SLA & Escalation** | Policy CRUD, breach detection (cron), escalation logs | ✅ DONE |
 | **4.13 Workflow Automation** | Event triggers, configurable rules, workflow executions | ✅ DONE |
 | **4.14 Reporting & Dashboards** | Pipeline, Deal, Project Health, SLA, Activity, CSV Export | ✅ DONE |
-| **4.15 RBAC** | Dynamic permissions, role-based record access | ✅ DONE |
+| **4.15 RBAC & User Management** | Dynamic permissions, super_admin hierarchy, role-based record access, complete User CRUD | ✅ DONE |
 | **4.16 Audit Trail** | Full change history, old/new values, triggers on all tables | ✅ DONE |
 | **4.17 Quotations** | Quotation lifecycle with line items and tax | ✅ DONE |
 | **4.18 Expenses** | Project expenses with receipts and categories | ✅ DONE |
@@ -130,9 +130,11 @@ THROTTLE_LIMIT=100
 
 ---
 
-## 5. DEFERRED TO V2
+## 5. COMPLETED IN V2
+- Client-facing portal / mobile app API with Guest auth, project access, comments, external doc uploads
+
+## 6. DEFERRED TO V2
 - Two-factor authentication (2FA)
-- Client-facing portal / mobile app
 - Invoice PDF generation from quotations
 - Full ZIP data export
 - Email provider integrations (Gmail / Outlook OAuth)

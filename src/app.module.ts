@@ -30,6 +30,7 @@ import { ActivitiesModule } from './modules/activities/activities.module';
 import { NotesModule } from './modules/notes/notes.module';
 import { AssignmentsModule } from './modules/assignments/assignments.module';
 import { SlasModule } from './modules/slas/slas.module';
+import { PortalModule } from './modules/portal/portal.module';
 
 @Module({
   imports: [
@@ -71,6 +72,7 @@ import { SlasModule } from './modules/slas/slas.module';
     NotesModule,
     AssignmentsModule,
     SlasModule,
+    PortalModule,
   ],
 })
 export class AppModule {}

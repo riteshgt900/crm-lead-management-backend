@@ -10,6 +10,9 @@
   - `SessionGuard` validates cookie via `fn_auth_operations('validate_session')`.
   - `req.user` populated with: `{ id, roleId, roleName, permissions[] }`.
 - **RBAC**: Use `@Permissions('module:action')` decorator. `PermissionsGuard` checks slugs against `req.user.permissions[]`.
+- **RBAC Hierarchy**: A strict role hierarchy is enforced in PostgreSQL dispatchers.
+  - `super_admin`: The ultimate authoritative role.
+  - `admin`: Has broad access but is explicitly blocked from creating, editing, dropping, or modifying the roles & permissions of `super_admin` users.
 
 ---
 

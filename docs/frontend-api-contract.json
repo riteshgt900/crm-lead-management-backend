@@ -231,6 +231,56 @@
         "sortOrder": 3
       }
     ],
+    "activity_type": [
+      {
+        "key": "call",
+        "color": "#2563eb",
+        "label": "Call",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "meeting",
+        "color": "#0f766e",
+        "label": "Meeting",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "email",
+        "color": "#7c3aed",
+        "label": "Email",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "note",
+        "color": "#d97706",
+        "label": "Note",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "task",
+        "color": "#16a34a",
+        "label": "Task",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      },
+      {
+        "key": "system_event",
+        "color": "#6b7280",
+        "label": "System Event",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      }
+    ],
     "lead_category": [
       {
         "key": "residential",
@@ -415,6 +465,72 @@
         "value": {},
         "isDefault": false,
         "sortOrder": 5
+      },
+      {
+        "key": "opportunity_created",
+        "color": "#2563eb",
+        "label": "Opportunity Created",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 6
+      },
+      {
+        "key": "opportunity_won",
+        "color": "#15803d",
+        "label": "Opportunity Won",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 7
+      },
+      {
+        "key": "opportunity_lost",
+        "color": "#dc2626",
+        "label": "Opportunity Lost",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 8
+      },
+      {
+        "key": "sla_breached",
+        "color": "#dc2626",
+        "label": "SLA Breached",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 9
+      },
+      {
+        "key": "lead_assigned",
+        "color": "#0ea5e9",
+        "label": "Lead Assigned",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 10
+      }
+    ],
+    "assignment_rule": [
+      {
+        "key": "round_robin",
+        "color": "#2563eb",
+        "label": "Round Robin",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "pool",
+        "color": "#7c3aed",
+        "label": "Pool Pick",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "manual",
+        "color": "#6b7280",
+        "label": "Manual",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
       }
     ],
     "document_status": [
@@ -551,6 +667,48 @@
         "sortOrder": 5
       }
     ],
+    "opportunity_stage": [
+      {
+        "key": "prospecting",
+        "color": "#2563eb",
+        "label": "Prospecting",
+        "value": {},
+        "isDefault": true,
+        "sortOrder": 1
+      },
+      {
+        "key": "proposal",
+        "color": "#7c3aed",
+        "label": "Proposal",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 2
+      },
+      {
+        "key": "negotiation",
+        "color": "#d97706",
+        "label": "Negotiation",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 3
+      },
+      {
+        "key": "won",
+        "color": "#15803d",
+        "label": "Won",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 4
+      },
+      {
+        "key": "lost",
+        "color": "#dc2626",
+        "label": "Lost",
+        "value": {},
+        "isDefault": false,
+        "sortOrder": 5
+      }
+    ],
     "document_share_mode": [
       {
         "key": "internal",
@@ -579,6 +737,33 @@
     ]
   },
   "reports": [
+    {
+      "label": "Activity Summary",
+      "reportKey": "activity_summary",
+      "definition": {
+        "entity": "activities",
+        "metrics": [
+          "type",
+          "entity_type",
+          "activity_date"
+        ]
+      },
+      "description": "Cross-entity activity and engagement log"
+    },
+    {
+      "label": "Deal Pipeline",
+      "reportKey": "deal_pipeline",
+      "definition": {
+        "entity": "opportunity",
+        "metrics": [
+          "count",
+          "amount",
+          "stage",
+          "probability"
+        ]
+      },
+      "description": "Opportunity stage conversion summary"
+    },
     {
       "label": "Expense Summary",
       "reportKey": "expense_summary",
@@ -631,6 +816,19 @@
         ]
       },
       "description": "Expected quotation and project revenue"
+    },
+    {
+      "label": "SLA Breach Log",
+      "reportKey": "sla_breach_log",
+      "definition": {
+        "entity": "escalation_logs",
+        "metrics": [
+          "status",
+          "entity_type",
+          "escalated_at"
+        ]
+      },
+      "description": "Active and historical escalation records"
     },
     {
       "label": "Task Workload",
@@ -858,6 +1056,157 @@
       },
       "permissionSlug": "accounts:manage",
       "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Activity",
+      "fields": [
+        {
+          "label": "Entity Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "entityType",
+          "sortOrder": 10,
+          "columnName": "entity_type",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "lead",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Entity ID",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "entityId",
+          "sortOrder": 20,
+          "columnName": "entity_id",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Type",
+          "config": {},
+          "dataType": "activity_type",
+          "fieldKey": "type",
+          "sortOrder": 30,
+          "columnName": "type",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "call",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "activity_type",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Title",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "title",
+          "sortOrder": 40,
+          "columnName": "title",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Discovery call",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Description",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "description",
+          "sortOrder": 50,
+          "columnName": "description",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Discussed requirements",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Date",
+          "config": {},
+          "dataType": "timestamptz",
+          "fieldKey": "activityDate",
+          "sortOrder": 60,
+          "columnName": "activity_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-03-28T10:00:00Z",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "entityType",
+        "entityId",
+        "type",
+        "title",
+        "activityDate"
+      ],
+      "formKey": "activity",
+      "metadata": {
+        "module": "engagement"
+      },
+      "entityKey": "activity",
+      "routeBase": "/api/data/activity",
+      "tableName": "activities",
+      "primaryKey": "id",
+      "titleColumn": "title",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "entityId": "uuid",
+          "entityType": "lead"
+        },
+        "create": {
+          "type": "call",
+          "title": "Discovery call",
+          "entityId": "uuid",
+          "entityType": "lead"
+        }
+      },
+      "permissionSlug": "activities:manage",
+      "defaultSortColumn": "activity_date",
       "supportsCustomFields": true
     },
     {
@@ -2534,6 +2883,371 @@
       "supportsCustomFields": true
     },
     {
+      "label": "Note",
+      "fields": [
+        {
+          "label": "Entity Type",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "entityType",
+          "sortOrder": 10,
+          "columnName": "entity_type",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "project",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Entity ID",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "entityId",
+          "sortOrder": 20,
+          "columnName": "entity_id",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Content",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "content",
+          "sortOrder": 30,
+          "columnName": "content",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": false,
+          "sampleValue": "Client wants timeline revision",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Pinned",
+          "config": {},
+          "dataType": "boolean",
+          "fieldKey": "isPinned",
+          "sortOrder": 40,
+          "columnName": "is_pinned",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": false,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "entityType",
+        "entityId",
+        "isPinned"
+      ],
+      "formKey": "note",
+      "metadata": {
+        "module": "engagement"
+      },
+      "entityKey": "note",
+      "routeBase": "/api/data/note",
+      "tableName": "notes",
+      "primaryKey": "id",
+      "titleColumn": "content",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "entityId": "uuid",
+          "entityType": "project"
+        },
+        "create": {
+          "content": "Client requested timeline revision",
+          "entityId": "uuid",
+          "entityType": "project"
+        }
+      },
+      "permissionSlug": "notes:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
+      "label": "Opportunity",
+      "fields": [
+        {
+          "label": "Title",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "title",
+          "sortOrder": 10,
+          "columnName": "title",
+          "isReadonly": false,
+          "isRequired": true,
+          "isSortable": true,
+          "sampleValue": "Refurbishment Deal",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Description",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "description",
+          "sortOrder": 20,
+          "columnName": "description",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Negotiation in progress",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Stage",
+          "config": {},
+          "dataType": "opportunity_stage",
+          "fieldKey": "stage",
+          "sortOrder": 30,
+          "columnName": "stage",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "prospecting",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": "opportunity_stage",
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Amount",
+          "config": {},
+          "dataType": "numeric",
+          "fieldKey": "amount",
+          "sortOrder": 40,
+          "columnName": "amount",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 500000,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Probability",
+          "config": {},
+          "dataType": "integer",
+          "fieldKey": "probability",
+          "sortOrder": 50,
+          "columnName": "probability",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": 50,
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Expected Close",
+          "config": {},
+          "dataType": "date",
+          "fieldKey": "expectedCloseDate",
+          "sortOrder": 60,
+          "columnName": "expected_close_date",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "2026-06-30",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Lead",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "leadId",
+          "sortOrder": 70,
+          "columnName": "lead_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Account",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "accountId",
+          "sortOrder": 80,
+          "columnName": "account_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Contact",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "contactId",
+          "sortOrder": 90,
+          "columnName": "contact_id",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Assigned To",
+          "config": {},
+          "dataType": "uuid",
+          "fieldKey": "assignedTo",
+          "sortOrder": 100,
+          "columnName": "assigned_to",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "sampleValue": "00000000-0000-0000-0000-000000000000",
+          "defaultValue": null,
+          "isFilterable": true,
+          "lookupSetKey": null,
+          "includeInList": true,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        },
+        {
+          "label": "Lost Reason",
+          "config": {},
+          "dataType": "text",
+          "fieldKey": "lostReason",
+          "sortOrder": 110,
+          "columnName": "lost_reason",
+          "isReadonly": false,
+          "isRequired": false,
+          "isSortable": false,
+          "sampleValue": "Budget constraint",
+          "defaultValue": null,
+          "isFilterable": false,
+          "lookupSetKey": null,
+          "includeInList": false,
+          "includeInCreate": true,
+          "includeInDetail": true,
+          "includeInUpdate": true
+        }
+      ],
+      "filters": [
+        "title",
+        "stage",
+        "amount",
+        "probability",
+        "expectedCloseDate",
+        "leadId",
+        "accountId",
+        "contactId",
+        "assignedTo"
+      ],
+      "formKey": "opportunity",
+      "metadata": {
+        "module": "sales"
+      },
+      "entityKey": "opportunity",
+      "routeBase": "/api/data/opportunity",
+      "tableName": "opportunities",
+      "primaryKey": "id",
+      "titleColumn": "title",
+      "supportsTags": true,
+      "samplePayload": {
+        "list": {
+          "page": 1,
+          "limit": 20
+        },
+        "create": {
+          "stage": "prospecting",
+          "title": "New Deal",
+          "amount": 500000,
+          "accountId": "uuid"
+        },
+        "update": {
+          "id": "uuid",
+          "stage": "negotiation",
+          "probability": 75
+        }
+      },
+      "permissionSlug": "opportunities:manage",
+      "defaultSortColumn": "created_at",
+      "supportsCustomFields": true
+    },
+    {
       "label": "Project",
       "fields": [
         {
@@ -3617,6 +4331,298 @@
   ],
   "endpoints": [
     {
+      "route": "/api/activities",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "activity"
+      },
+      "actionKey": "list_activities",
+      "entityKey": "activity",
+      "endpointKey": "action.activity.list",
+      "dispatcherFn": "fn_activity_operations",
+      "filterSchema": {
+        "type": "call"
+      },
+      "requestSchema": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "activities:manage",
+      "responseSchema": {
+        "rid": "s-activities-listed"
+      }
+    },
+    {
+      "route": "/api/activities/log-call",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "activity"
+      },
+      "actionKey": "log_call",
+      "entityKey": "activity",
+      "endpointKey": "action.activity.log_call",
+      "dispatcherFn": "fn_activity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "title": "Call with client",
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "activities:manage",
+      "responseSchema": {
+        "rid": "s-call-logged"
+      }
+    },
+    {
+      "route": "/api/activities/log-email",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "activity"
+      },
+      "actionKey": "log_email",
+      "entityKey": "activity",
+      "endpointKey": "action.activity.log_email",
+      "dispatcherFn": "fn_activity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "title": "Follow-up email",
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "activities:manage",
+      "responseSchema": {
+        "rid": "s-email-logged"
+      }
+    },
+    {
+      "route": "/api/activities/log-meeting",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "activity"
+      },
+      "actionKey": "log_meeting",
+      "entityKey": "activity",
+      "endpointKey": "action.activity.log_meeting",
+      "dispatcherFn": "fn_activity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "title": "Kickoff meeting",
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "activities:manage",
+      "responseSchema": {
+        "rid": "s-meeting-logged"
+      }
+    },
+    {
+      "route": "/api/activities/timeline",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "activity"
+      },
+      "actionKey": "list_global_timeline",
+      "entityKey": null,
+      "endpointKey": "action.activity.timeline",
+      "dispatcherFn": "fn_activity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "limit": 30
+      },
+      "samplePayload": {
+        "limit": 30
+      },
+      "permissionSlug": "activities:manage",
+      "responseSchema": {
+        "rid": "s-timeline-listed"
+      }
+    },
+    {
+      "route": "/api/assignments/pools/add-member",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "assignment"
+      },
+      "actionKey": "add_pool_member",
+      "entityKey": null,
+      "endpointKey": "action.assignment.add_member",
+      "dispatcherFn": "fn_assignment_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "poolId": "uuid",
+        "userId": "uuid"
+      },
+      "samplePayload": {
+        "poolId": "uuid",
+        "userId": "uuid"
+      },
+      "permissionSlug": "assignments:manage",
+      "responseSchema": {
+        "rid": "s-pool-member-added"
+      }
+    },
+    {
+      "route": "/api/assignments/pools/create",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "assignment"
+      },
+      "actionKey": "create_pool",
+      "entityKey": null,
+      "endpointKey": "action.assignment.create_pool",
+      "dispatcherFn": "fn_assignment_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "name": "Sales Team Pool",
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "name": "Sales Team Pool",
+        "ruleType": "round_robin"
+      },
+      "permissionSlug": "assignments:manage",
+      "responseSchema": {
+        "rid": "s-pool-created"
+      }
+    },
+    {
+      "route": "/api/assignments/history",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "assignment"
+      },
+      "actionKey": "list_assignment_history",
+      "entityKey": null,
+      "endpointKey": "action.assignment.history",
+      "dispatcherFn": "fn_assignment_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "entityId": "uuid",
+        "entityType": "lead"
+      },
+      "permissionSlug": "assignments:manage",
+      "responseSchema": {
+        "rid": "s-assignment-history-listed"
+      }
+    },
+    {
+      "route": "/api/assignments/pools",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "assignment"
+      },
+      "actionKey": "list_pools",
+      "entityKey": null,
+      "endpointKey": "action.assignment.list_pools",
+      "dispatcherFn": "fn_assignment_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityType": "lead"
+      },
+      "samplePayload": {
+        "entityType": "lead"
+      },
+      "permissionSlug": "assignments:manage",
+      "responseSchema": {
+        "rid": "s-pools-listed"
+      }
+    },
+    {
+      "route": "/api/assignments/pools/remove-member",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "assignment"
+      },
+      "actionKey": "remove_pool_member",
+      "entityKey": null,
+      "endpointKey": "action.assignment.remove_member",
+      "dispatcherFn": "fn_assignment_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "poolId": "uuid",
+        "userId": "uuid"
+      },
+      "samplePayload": {
+        "poolId": "uuid",
+        "userId": "uuid"
+      },
+      "permissionSlug": "assignments:manage",
+      "responseSchema": {
+        "rid": "s-pool-member-removed"
+      }
+    },
+    {
+      "route": "/api/assignments/unassigned",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "assignment"
+      },
+      "actionKey": "get_unassigned_leads",
+      "entityKey": null,
+      "endpointKey": "action.assignment.unassigned_leads",
+      "dispatcherFn": "fn_assignment_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "assignments:manage",
+      "responseSchema": {
+        "rid": "s-unassigned-leads-listed"
+      }
+    },
+    {
       "route": "/api/action/document.approve",
       "method": "POST",
       "formKey": "document",
@@ -3777,6 +4783,379 @@
       }
     },
     {
+      "route": "/api/notes/create",
+      "method": "POST",
+      "formKey": "note",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "note"
+      },
+      "actionKey": "create_note",
+      "entityKey": "note",
+      "endpointKey": "action.note.create",
+      "dispatcherFn": "fn_notes_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "content": "Note text",
+        "entityId": "uuid",
+        "entityType": "project"
+      },
+      "samplePayload": {
+        "content": "Note text",
+        "entityId": "uuid",
+        "entityType": "project"
+      },
+      "permissionSlug": "notes:manage",
+      "responseSchema": {
+        "rid": "s-note-created"
+      }
+    },
+    {
+      "route": "/api/notes/delete",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "note"
+      },
+      "actionKey": "delete_note",
+      "entityKey": "note",
+      "endpointKey": "action.note.delete",
+      "dispatcherFn": "fn_notes_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "notes:manage",
+      "responseSchema": {
+        "rid": "s-note-deleted"
+      }
+    },
+    {
+      "route": "/api/notes",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "note"
+      },
+      "actionKey": "list_notes",
+      "entityKey": "note",
+      "endpointKey": "action.note.list",
+      "dispatcherFn": "fn_notes_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "entityId": "uuid",
+        "entityType": "project"
+      },
+      "samplePayload": {
+        "entityId": "uuid",
+        "entityType": "project"
+      },
+      "permissionSlug": "notes:manage",
+      "responseSchema": {
+        "rid": "s-notes-listed"
+      }
+    },
+    {
+      "route": "/api/notes/pin",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "note"
+      },
+      "actionKey": "pin_note",
+      "entityKey": "note",
+      "endpointKey": "action.note.pin",
+      "dispatcherFn": "fn_notes_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "notes:manage",
+      "responseSchema": {
+        "rid": "s-note-pinned"
+      }
+    },
+    {
+      "route": "/api/notes/update",
+      "method": "POST",
+      "formKey": "note",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "note"
+      },
+      "actionKey": "update_note",
+      "entityKey": "note",
+      "endpointKey": "action.note.update",
+      "dispatcherFn": "fn_notes_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "content": "Updated text"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "content": "Updated text"
+      },
+      "permissionSlug": "notes:manage",
+      "responseSchema": {
+        "rid": "s-note-updated"
+      }
+    },
+    {
+      "route": "/api/opportunities/assign",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "assign_opportunity",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.assign",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "userId": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "userId": "uuid"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-assigned"
+      }
+    },
+    {
+      "route": "/api/opportunities/close-lost",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "close_lost",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.close_lost",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "lostReason": "Budget"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "lostReason": "Budget mismatch"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-lost"
+      }
+    },
+    {
+      "route": "/api/opportunities/close-won",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "close_won",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.close_won",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "projectTitle": "Villa Project"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-won"
+      }
+    },
+    {
+      "route": "/api/opportunities/create",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "create_opportunity",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.create",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "stage": "prospecting",
+        "title": "New Deal"
+      },
+      "samplePayload": {
+        "title": "New Deal",
+        "accountId": "uuid"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-created"
+      }
+    },
+    {
+      "route": "/api/opportunities/delete",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "delete_opportunity",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.delete",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-deleted"
+      }
+    },
+    {
+      "route": "/api/opportunities/get",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "get_opportunity",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.get",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-loaded"
+      }
+    },
+    {
+      "route": "/api/opportunities",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "list_opportunities",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.list",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {
+        "stage": "prospecting"
+      },
+      "requestSchema": {
+        "page": 1,
+        "limit": 20
+      },
+      "samplePayload": {
+        "page": 1,
+        "limit": 20
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunities-listed"
+      }
+    },
+    {
+      "route": "/api/opportunities/update",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "update_opportunity",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.update",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "amount": 600000
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "amount": 600000
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-updated"
+      }
+    },
+    {
+      "route": "/api/opportunities/update-stage",
+      "method": "POST",
+      "formKey": "opportunity",
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "opportunity"
+      },
+      "actionKey": "update_stage",
+      "entityKey": "opportunity",
+      "endpointKey": "action.opportunity.update_stage",
+      "dispatcherFn": "fn_opportunity_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "stage": "negotiation"
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "stage": "negotiation"
+      },
+      "permissionSlug": "opportunities:manage",
+      "responseSchema": {
+        "rid": "s-opportunity-stage-updated"
+      }
+    },
+    {
       "route": "/api/share/:token",
       "method": "GET",
       "formKey": "document",
@@ -3799,6 +5178,183 @@
       "permissionSlug": "public",
       "responseSchema": {
         "rid": "s-share-resolved"
+      }
+    },
+    {
+      "route": "/api/slas/check-breaches",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "check_sla_breaches",
+      "entityKey": null,
+      "endpointKey": "action.sla.check_breaches",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {},
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-sla-check-complete"
+      }
+    },
+    {
+      "route": "/api/slas/policies/create",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "create_sla_policy",
+      "entityKey": null,
+      "endpointKey": "action.sla.create_policy",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "name": "Critical Tasks",
+        "entityType": "task",
+        "dueTimeHours": 4
+      },
+      "samplePayload": {
+        "name": "Critical Tasks",
+        "entityType": "task",
+        "dueTimeHours": 4,
+        "escalationTimeHours": 8
+      },
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-sla-policy-created"
+      }
+    },
+    {
+      "route": "/api/slas/policies/delete",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "delete_sla_policy",
+      "entityKey": null,
+      "endpointKey": "action.sla.delete_policy",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-sla-policy-deleted"
+      }
+    },
+    {
+      "route": "/api/slas/escalations",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "list_escalations",
+      "entityKey": null,
+      "endpointKey": "action.sla.list_escalations",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "status": "open"
+      },
+      "samplePayload": {
+        "status": "open",
+        "entityType": "task"
+      },
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-escalations-listed"
+      }
+    },
+    {
+      "route": "/api/slas/policies",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "list_sla_policies",
+      "entityKey": null,
+      "endpointKey": "action.sla.list_policies",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {},
+      "samplePayload": {
+        "entityType": "task"
+      },
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-sla-policies-listed"
+      }
+    },
+    {
+      "route": "/api/slas/escalations/resolve",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "resolve_escalation",
+      "entityKey": null,
+      "endpointKey": "action.sla.resolve",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid"
+      },
+      "samplePayload": {
+        "id": "uuid"
+      },
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-escalation-resolved"
+      }
+    },
+    {
+      "route": "/api/slas/policies/update",
+      "method": "POST",
+      "formKey": null,
+      "authMode": "session",
+      "isPublic": false,
+      "metadata": {
+        "category": "sla"
+      },
+      "actionKey": "update_sla_policy",
+      "entityKey": null,
+      "endpointKey": "action.sla.update_policy",
+      "dispatcherFn": "fn_sla_operations",
+      "filterSchema": {},
+      "requestSchema": {
+        "id": "uuid",
+        "dueTimeHours": 8
+      },
+      "samplePayload": {
+        "id": "uuid",
+        "dueTimeHours": 8
+      },
+      "permissionSlug": "slas:manage",
+      "responseSchema": {
+        "rid": "s-sla-policy-updated"
       }
     },
     {
@@ -5690,5 +7246,5 @@
       }
     }
   ],
-  "generatedAt": "2026-03-29T09:38:24.286296+05:30"
+  "generatedAt": "2026-03-29T17:30:36.342168+05:30"
 }

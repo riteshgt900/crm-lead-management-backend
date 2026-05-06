@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Query, ForbiddenException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ForbiddenException, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto, ListUsersQueryDto, UpdateUserDto } from './dto/user.dto';
@@ -28,6 +28,12 @@ export class UsersController {
   async update(@Param('id') id: string, @Body() dto: UpdateUserDto, @CurrentUser() user: any) {
     this.assertAdmin(user);
     return this.usersService.update(id, dto, user);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string, @CurrentUser() user: any) {
+    this.assertAdmin(user);
+    return this.usersService.delete(id, user);
   }
 
   private assertAdmin(user: any) {

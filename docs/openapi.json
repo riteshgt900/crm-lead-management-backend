@@ -266,6 +266,27 @@
         "tags": [
           "Users"
         ]
+      },
+      "delete": {
+        "operationId": "UsersController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users"
+        ]
       }
     },
     "/api/leads": {
@@ -1344,6 +1365,85 @@
         "operationId": "RbacController_listRoles",
         "summary": "List roles",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "RBAC"
+        ]
+      },
+      "post": {
+        "operationId": "RbacController_createRole",
+        "summary": "Create role",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "RBAC"
+        ]
+      }
+    },
+    "/api/rbac/roles/{id}": {
+      "patch": {
+        "operationId": "RbacController_updateRole",
+        "summary": "Update role",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "RBAC"
+        ]
+      },
+      "delete": {
+        "operationId": "RbacController_deleteRole",
+        "summary": "Delete role",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": ""
@@ -2514,6 +2614,174 @@
           "SLAs"
         ]
       }
+    },
+    "/api/portal/login": {
+      "post": {
+        "operationId": "PortalController_login",
+        "summary": "Login to portal",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Portal"
+        ]
+      }
+    },
+    "/api/portal/projects": {
+      "get": {
+        "operationId": "PortalController_getProjects",
+        "summary": "Get portal projects",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of projects for the portal user"
+          }
+        },
+        "tags": [
+          "Portal"
+        ],
+        "security": [
+          {
+            "crm_portal_session": []
+          }
+        ]
+      }
+    },
+    "/api/portal/projects/{id}": {
+      "get": {
+        "operationId": "PortalController_getProjectDetails",
+        "summary": "Get portal project details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project details returned successfully"
+          }
+        },
+        "tags": [
+          "Portal"
+        ],
+        "security": [
+          {
+            "crm_portal_session": []
+          }
+        ]
+      }
+    },
+    "/api/portal/comments": {
+      "post": {
+        "operationId": "PortalController_addComment",
+        "summary": "Add a comment via portal",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCommentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Comment added successfully"
+          }
+        },
+        "tags": [
+          "Portal"
+        ],
+        "security": [
+          {
+            "crm_portal_session": []
+          }
+        ]
+      }
+    },
+    "/api/portal/upload": {
+      "post": {
+        "operationId": "PortalController_uploadDocument",
+        "summary": "Upload document via portal",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadDocDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Document uploaded successfully"
+          }
+        },
+        "tags": [
+          "Portal"
+        ],
+        "security": [
+          {
+            "crm_portal_session": []
+          }
+        ]
+      }
+    },
+    "/api/portal/admin/invite": {
+      "post": {
+        "operationId": "PortalController_inviteToPortal",
+        "summary": "Send portal invite to a user (Admin/Internal only)",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InviteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invite sent successfully"
+          }
+        },
+        "tags": [
+          "Portal"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -2569,22 +2837,7 @@
       },
       "LoginDto": {
         "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "example": "admin@crm.local",
-            "description": "User email address"
-          },
-          "password": {
-            "type": "string",
-            "example": "Admin@123",
-            "description": "User password"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ]
+        "properties": {}
       },
       "ForgotPasswordDto": {
         "type": "object",
@@ -3432,7 +3685,27 @@
           }
         }
       },
+      "CreateRoleDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateRoleDto": {
+        "type": "object",
+        "properties": {}
+      },
       "UpdateRolePermissionsDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "AddCommentDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UploadDocDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "InviteDto": {
         "type": "object",
         "properties": {}
       }

@@ -37,4 +37,12 @@ export class UsersService {
       ...buildUserContext(user),
     });
   }
+
+  async delete(id: string, user: any) {
+    return this.db.callDispatcher('fn_user_operations', {
+      operation: 'delete_user',
+      data: { id },
+      ...buildUserContext(user),
+    });
+  }
 }

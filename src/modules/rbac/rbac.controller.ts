@@ -1,7 +1,7 @@
-import { Body, Controller, ForbiddenException, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, ForbiddenException, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RbacService } from './rbac.service';
-import { ListRbacQueryDto, UpdateRolePermissionsDto } from './dto/rbac.dto';
+import { CreateRoleDto, ListRbacQueryDto, UpdateRoleDto, UpdateRolePermissionsDto } from './dto/rbac.dto';
 import { SessionGuard } from '../../common/guards/session.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
@@ -23,6 +23,27 @@ export class RbacController {
   async listRoles(@Query() query: ListRbacQueryDto, @CurrentUser() user: any) {
     this.assertAdmin(user);
     return this.rbacService.listRoles(query, user);
+  }
+
+  @Post('roles')
+  @ApiOperation({ summary: 'Create role' })
+  async createRole(@Body() dto: CreateRoleDto, @CurrentUser() user: any) {
+    this.assertAdmin(user);
+    return this.rbacService.createRole(dto, user);
+  }
+
+  @Patch('roles/:id')
+  @ApiOperation({ summary: 'Update role' })
+  async updateRole(@Param('id') id: string, @Body() dto: UpdateRoleDto, @CurrentUser() user: any) {
+    this.assertAdmin(user);
+    return this.rbacService.updateRole(id, dto, user);
+  }
+
+  @Delete('roles/:id')
+  @ApiOperation({ summary: 'Delete role' })
+  async deleteRole(@Param('id') id: string, @CurrentUser() user: any) {
+    this.assertAdmin(user);
+    return this.rbacService.deleteRole(id, user);
   }
 
   @Post('roles/:id/permissions')
